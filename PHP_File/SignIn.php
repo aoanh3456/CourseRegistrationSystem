@@ -12,19 +12,20 @@
 	<body>
 		<form name="form" method="post" action="SignInMethod.php">
 			<div class="main">
-				<table border="0"> 
+				<table border="0">
 					<tr>
 						<td>Username:</td>
-						<td><input type="text" name="username"> </td>
+						<td><input type="text" name="username"></td>
 					</tr>
-					<tr><td>Password:</td>
-						<td><input type="password" name="password"> </td>
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" name="password"></td>
 					</tr>
 					<tr>
 						<td><input type="submit" name="signinbotton" value ="Login"></td>
 						<td><input type="button"  value ="Signup"></td>	
-					</tr>	
-				</table>	
+					</tr>
+				</table>
 			</div>
 		</form>
 	</body>
