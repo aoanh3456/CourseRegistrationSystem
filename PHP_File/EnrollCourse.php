@@ -9,14 +9,14 @@
 		<!-- Date: 2017-12-14 -->
 		<style>
 			<?php
-				include('../PHP_File/menutopCSS.php');
+				include('../PHP_File/menuStudentCSS.php');
 			?>
 		</style>
 	</head>
 	<body>
 		<form name="enrollform" method="post" action="">
 			<?php
-				include('../PHP_File/menutop.php');
+				include('../PHP_File/menuStudent.php');
 			?>
 		</form>
 	</body>
