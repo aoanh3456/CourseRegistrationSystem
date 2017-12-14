@@ -18,7 +18,7 @@
 				<tr><td>Password:</td>
 				<td><input type="password" name="psw"> </td></tr>
 				<td><input type="button" value ="Login"><br></td>
-				<td><input type="text"  value ="Signup"><br></td>
+				<td><input type="button"  value ="Signup"><br></td>
 				
 				
 		</table>		
