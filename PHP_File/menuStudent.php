@@ -1,8 +1,8 @@
 <?php
-	$strg='<div class="menutop">
-  			<a href="#home">Home</a>
-  			<a href="#news">News</a>
-  			<a href="#contact">Contact</a>
+	$strg='<div class="menuStudent">
+  			<a href="#home">Profile</a>
+  			<a href="#news">Enroll Courses</a>
+  			<a href="#contact">View Registered</a>
 		</div>';
     echo $strg;
 ?>

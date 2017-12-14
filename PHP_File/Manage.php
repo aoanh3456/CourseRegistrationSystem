@@ -13,7 +13,7 @@
 		<form name="form" method="post" action="">
 		<input type="hidden" name="idStudent" value="" >
 			<?php
-				include 'menuStudent.php';
+				include 'menuStaff.php';
 			?>
 			<div id="main">
 				<table>

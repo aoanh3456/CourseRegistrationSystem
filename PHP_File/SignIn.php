@@ -7,52 +7,25 @@
 		<title>SignIn</title>
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-14 -->
-			<style>
-				<?php
-					include 'menutopCSS.php';
-				?>
-			</style>
 	</head>
 
 	<body>
-		<?php
-			include 'menutop.php';
-		?>
-		<div class="main">
-			<table border="0">
+		<form name="form" method="post" action="SignInMethod.php">
+			<div class="main">
+				<table border="0"> 
 					<tr>
-						<td>Student ID:</td>
-						<td><input type="text" name="Stuid" ></td>
+						<td>Username:</td>
+						<td><input type="text" name="username"> </td>
+					</tr>
+					<tr><td>Password:</td>
+						<td><input type="password" name="password"> </td>
 					</tr>
 					<tr>
-						<td>FirstName:</td>
-						<td><input type="text" name="firstname">  </td>
-					</tr>
-					<tr>
-						<td>LastName:</td>
-						<td><input type="text" name="lastname"> </td>
-					</tr>
-					<tr>
-						<td>Email:</td>
-						<td><input type="email" name="email"> </td>
-					</tr>
-					<tr>
-						<td>Intake:</td>
-						<td><input type="text" name="intake"> </td>
-					</tr>
-					<tr>
-						<td>Gender:</td>
-						<td><input type="text" name="gender"></td>
-					</tr>
-					<tr>
-						<td>Telephone:</td>
-						<td><input type="tel" name="usrtel"> </td>
-					</tr>
-					<tr>
-						<td>Major</td>
-						<td><input type="text" name="major"></td>
-					</tr>
-			</table>
+						<td><input type="submit" name="signinbotton" value ="Login"></td>
+						<td><input type="button"  value ="Signup"></td>	
+					</tr>	
+				</table>	
 			</div>
+		</form>
 	</body>
 </html>
