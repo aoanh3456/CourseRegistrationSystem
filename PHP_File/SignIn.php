@@ -21,6 +21,20 @@
 						<td>Password:</td>
 						<td><input type="password" name="password"></td>
 					</tr>
+					<?php 
+						session_start();
+						$valid="1";
+						if (isset($_SESSION["valid"])){
+               				$valid=(string)$_SESSION["valid"];
+            			}
+						if($valid=="0"){
+					?>
+					<tr>
+						<td colspan="2">Invalid account!</td>
+					</tr>
+					<?php  }
+						session_destroy();
+					?>
 					<tr>
 						<td><input type="submit" name="signinbotton" value ="Login"></td>
 						<td><input type="button"  value ="Signup"></td>	
