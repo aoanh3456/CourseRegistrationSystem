@@ -35,8 +35,8 @@
 	if($check=="0" && $valid=="1"){
 		$query="SELECT idstudent, username, password FROM student where username like '$username' and password like '$password'";
 		
-		if($staff = mysqli_query($conn, $query)){
-			while ($row=mysqli_fetch_array($staff)){
+		if($student = mysqli_query($conn, $query)){
+			while ($row=mysqli_fetch_array($student)){
 	    		$userStaff = $row["username"];
 	    		$passStaff = $row["password"];
 				
