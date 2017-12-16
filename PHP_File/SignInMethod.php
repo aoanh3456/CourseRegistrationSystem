@@ -24,7 +24,7 @@
 					$check="1";
 					$userid = $row["idstaff"];
 					$_SESSION["userid"] = $userid;
-					$newURL = "Manage.php";
+					$newURL = "Manage.php?userid=$userid&";
 					header('Location: '.$newURL);
 //				}
 	    	}
@@ -44,7 +44,7 @@
 					$check="1";
 					$userid = $row["idstaff"];
 					$userid = $_SESSION["idstudent"];
-					$newURL = "EnrollCourse.php";
+					$newURL = "EnrollCourse.php?userid=$userid&";
 					header('Location: '.$newURL);
 //				}
 	    	}
