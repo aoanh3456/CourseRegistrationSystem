@@ -1,10 +1,10 @@
 <?php
     $servername = "localhost";
-	$username = "root";
-	$password = "";
+	$usernamedb = "root";
+	$passworddb = "";
 	$database = "courseregistrationdatabase";
 
-	$conn = mysqli_connect($servername, $username, $password, $database);
+	$conn = mysqli_connect($servername, $usernamedb, $passworddb, $database);
 
 	if (!$conn) {
   	  die("Connection failed: " . mysqli_connect_error());

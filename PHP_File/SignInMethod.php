@@ -3,7 +3,6 @@
 	$valid="1";
 	if (empty($_POST["username"])) {
 		$valid="0";
-		$_SESSION["valid"] = $valid;
 	}
 
     include 'DBConnection.php';
@@ -54,6 +53,7 @@
 	
 	if($check=="0"){
 		$valid="0";
+		$_SESSION["username"] = $username;
 		$_SESSION["valid"] = $valid;
 		$newURL = "SignIn.php";
 		header('Location: '.$newURL);

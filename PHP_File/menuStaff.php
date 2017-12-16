@@ -1,6 +1,7 @@
 <?php
 	$strg='<div class="menuStudent">
-  			<a href="#home">Information Student</a>
+			<a href="SignUp.php">Create account</a>
+  			<a href="#home">Information student</a>
   			<a href="#news">Manage</a>
 		</div>';
     echo $strg;
