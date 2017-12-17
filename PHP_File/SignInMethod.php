@@ -24,7 +24,7 @@
 					$check="1";
 					$userid = $row["idstaff"];
 					$_SESSION["userid"] = $userid;
-					$newURL = "Manage.php?userid=$userid&";
+					$newURL = "Manage.php?";
 					header('Location: '.$newURL);
 //				}
 	    	}
@@ -42,9 +42,9 @@
 //				if($userStaff == $_POST['username'] && $passStaff == $_POST['password']){
 					mysqli_close($conn);
 					$check="1";
-					$userid = $row["idstaff"];
-					$userid = $_SESSION["idstudent"];
-					$newURL = "EnrollCourse.php?userid=$userid&";
+					$userid = $row["idstudent"];
+					$_SESSION["userid"] = $userid;
+					$newURL = "EnrollCourse.php";
 					header('Location: '.$newURL);
 //				}
 	    	}

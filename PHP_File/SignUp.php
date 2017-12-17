@@ -21,11 +21,13 @@
 		<title>SignUp</title>
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-13 -->
-		
+		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 
 	</head>
 	<body>
-		
+		<?php
+				include 'menuStaff.php';
+		?>
 		<form name="form" method="post" action="SignUpMethod.php">
 			<div class="main">
 				<table border="0">

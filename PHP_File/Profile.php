@@ -10,43 +10,128 @@
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 	</head>
 	<body>
-		<body>
+		<?php
+				include 'menuStaff.php';
+		?>	
 		<form name="Profile" method="post" action="">
 			<div class="main">
-				Profile
 				<table border="0">
 				<tr>
-					<td>Student ID:</td>
-					<td><input type="text" name="Stuid" ></td>
+					<td>First Name:</td>
+					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["firstname"])){echo (string)$_SESSION["firstname"];}?>">  </td>
 				</tr>
 				<tr>
-					<td>FirstName:</td>
-					<td><input type="text" name="firstname">  </td>
+					<td>Last Name:</td>
+					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["lastname"])){echo (string)$_SESSION["lastname"];}?>"> </td>
 				</tr>
 				<tr>
-					<td>LastName:</td>
-					<td><input type="text" name="lastname"> </td>
+					<td>Email:</td>
+					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["email"])){echo (string)$_SESSION["email"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Intake:</td>
-					<td><input type="text" name="intake"> </td>
+					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Classification</td>
+					<td>
+						<select name="classification" style="width: 200px">
+							<option value=""></option>
+							<?php  
+								if (isset($_SESSION["classification"])){
+               						$class=(string)$_SESSION["classification"];
+            					}
+							while ($row=mysqli_fetch_array($classification)){
+								if($class==$row["idClassification"]){?>
+									<option value="<?php echo $row["idClassification"] ?>" selected="selected"><?php echo $row["ClassificationName"] ?></option>
+								<?php }else{  ?>
+									<option value="<?php echo $row["idClassification"] ?>"><?php echo $row["ClassificationName"] ?></option>
+								<?php }  ?>
+							<?php }  ?>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Gender:</td>
-					<td><input type="text" name="gender"></td>
+					<td>
+						<select name="gender" style="width: 200px">
+							<?php  
+								if (isset($_SESSION["gender"])){
+               						$gender=(string)$_SESSION["gender"];
+            					}
+								if($gender=="1"){
+							?>
+								<option value="1" selected="selected"> Male</option>
+								<option value="0"> Female</option>
+							<?php }else{ ?>
+								<option value="1"> Male</option>
+								<option value="0" selected="selected"> Female</option>
+							<?php } ?>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td>Telephone:</td>
-					<td><input type="tel" name="usrtel"> </td>
+					<td><input style="width: 200px" type="tel" name="phone" value="<?php if (isset($_SESSION["phone"])){echo (string)$_SESSION["phone"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Major</td>
-					<td><input type="text" name="major"></td>
+					<td>
+						<select name="major" style="width: 200px">
+							<option value=""></option>
+							<?php  
+								if (isset($_SESSION["major"])){
+               						$temp=(string)$_SESSION["major"];
+            					}
+							while ($row=mysqli_fetch_array($major)){
+								if($temp==$row["idmajor"]){?>
+									<option value="<?php echo $row["idmajor"] ?>" selected="selected"><?php echo $row["majorname"] ?></option>
+								<?php }else{  ?>
+									<option value="<?php echo $row["idmajor"] ?>"><?php echo $row["majorname"] ?></option>
+								<?php }  ?>
+							<?php }  ?>
+						</select>
+					</td>
 				</tr>
-				<td><input type="button" value ="Change Password"><br></td>
-				</table>
+				<tr>
+					<td>Username:</td>
+					<td><input style="width: 200px" type="text" name="username" value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input style="width: 200px" type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>Comfirm Password:</td>
+					<td><input style="width: 200px" type="password" name="cfpassword"></td>
+				</tr>
+				<?php 
+					
+					$valid="1";
+					if (isset($_SESSION["valid"])){
+               			$valid=(string)$_SESSION["valid"];
+            		}
+					if($valid=="0"){
+				?>
+				<tr>
+					<td colspan="2" align="center">Please input all information!</td>
+				</tr>
+				<?php  }else if($valid=="2"){?>
+				<tr>
+					<td colspan="2" align="center">Username is used!</td>
+				</tr>	
+				<?php }else if($valid=="3"){ 	?>
+				<tr>
+					<td colspan="2" align="center">Confirm Password is wrong!</td>
+				</tr>	
+				<?php } 
+					session_destroy();
+				?>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+				</tr>
+			</table>
 			</div>
-		<form name="Profile" method="post" action="">
-			
+		</form>
 	</body>
 </html>
