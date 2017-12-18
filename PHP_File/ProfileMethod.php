@@ -11,7 +11,7 @@
 	$userid = $_SESSION["userid"];
 	
 	$valid="1";
-	if(empty($firstname) || empty($lastname) || empty($email) || empty($intake) || empty($major)){
+	if(empty($firstname) || empty($lastname) || empty($email) || empty($intake) || empty($major) || empty($classification)){
 		$valid="0";
 	}
 			
@@ -20,7 +20,7 @@
 	$check="0";
 	
 	if($check=="0" && $valid=="1"){
-		$query="UPDATE `student` SET `FirstName`=$firstname,`LastName`=$lastname,`Email`=$email,
+		$query="UPDATE `student` SET `FirstName`='$firstname',`LastName`='$lastname',`Email`='$email',
 			`Classification`=$classification,`Gender`=$gender,
 			`Major`=$major,`intake`=$intake where idStudent=$userid";
 		if(mysqli_query($conn, $query)){
@@ -44,7 +44,7 @@
 		$_SESSION["major"] = $major;
 		$_SESSION["classification"] = $classification;
 		$_SESSION["userid"] = $userid;
-		$newURL = "SignUp.php";
+		$newURL = "Profile.php";
 		header('Location: '.$newURL);
 	}
 ?>

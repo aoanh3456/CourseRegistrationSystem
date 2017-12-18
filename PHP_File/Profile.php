@@ -27,7 +27,7 @@
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<script>
-			function submitform() () {
+			function submitform() {
 			 	document.forms["form"].action.value = "submit";
 	   			document.forms["form"].submit();
 			}
@@ -133,13 +133,17 @@
 					<td colspan="2" align="center">Please input all information!</td>
 				</tr>
 				<?php }
-					session_destroy();
+					
 				?>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+					<td colspan="2" align="center">
+						<a href="" colspan="2" align="center">Change your password</a>
+					</td>
 				</tr>
 				<tr>
-					<td href="javascript:submitform()" colspan="2" align="center"><img src="../Img/submit.png" alt="Edit" title="Edit" border=0 /></td>
+					<td colspan="2" align="center">
+						<a href="javascript:submitform();" colspan="2" align="center"><img src="../Img/submit.png" alt="Edit" title="Edit" border=0 /></a>
+					</td>
 				</tr>
 			</table>
 			</div>

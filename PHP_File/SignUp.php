@@ -134,7 +134,7 @@
 					<td colspan="2" align="center">Confirm Password is wrong!</td>
 				</tr>	
 				<?php } 
-					session_destroy();
+					
 				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>

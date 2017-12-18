@@ -14,7 +14,7 @@
 	session_start();
 	$valid="1";
 	if(empty($firstname) || empty($lastname) || empty($email) || empty($intake) || empty($major)
-			|| empty($username) || empty($password)){
+			|| empty($username) || empty($password) || empty($classification) || empty($cfpassword)){
 		$valid="0";
 	}
 			
