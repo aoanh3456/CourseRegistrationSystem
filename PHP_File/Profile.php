@@ -137,7 +137,7 @@
 				?>
 				<tr>
 					<td colspan="2" align="center">
-						<a href="" colspan="2" align="center">Change your password</a>
+						<a href="ChangePassword.php" colspan="2" align="center">Change your password</a>
 					</td>
 				</tr>
 				<tr>

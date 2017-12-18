@@ -7,13 +7,13 @@
 	$_SESSION["userid"] = $userid;
 	
 	include 'DBConnection.php';
-	$query="select a.CourseCode1, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
+	$query="select case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
 	 from courses a left join majortable b on a.majorcourse=b.idmajor
 	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
 	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
 	 		and a.Prerequisite=0
 	union
-	select a.CourseCode1, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
+	select case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
 	 from courses a left join majortable b on a.majorcourse=b.idmajor
 	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
 	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
@@ -55,9 +55,9 @@
 						while ($row=mysqli_fetch_array($courses)){
 					?>
 					<tr>
-						<td align="center"><?php echo $row["CourseCode1"] ?></td>
-						<td align="left"><?php echo $row["CoursesName"] ?></td>
-						<td align="left"><?php echo $row["credit"] ?></td>
+						<td align="center"><?php echo $row["case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end"] ?></td>
+						<td align="center"><?php echo $row["CoursesName"] ?></td>
+						<td align="center"><?php echo $row["credit"] ?></td>
 						<td align="center"><?php echo $row["case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end"] ?></td>
 						<td align="center"><?php echo $row["Prerequisite"] ?></td>
 						<td align="center">
