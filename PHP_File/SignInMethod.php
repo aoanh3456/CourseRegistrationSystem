@@ -24,7 +24,7 @@
 					$check="1";
 					$userid = $row["idstaff"];
 					$_SESSION["userid"] = $userid;
-					$newURL = "Manage.php?";
+					$newURL = "Manage.php";
 					header('Location: '.$newURL);
 //				}
 	    	}

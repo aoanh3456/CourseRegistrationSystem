@@ -1,7 +1,7 @@
 <?php
 	$strg='<div class="menuStudent">
   			<a href="EnrollCourse.php">Enroll Courses</a>
-  			<a href="#contact">View Registered</a>
+  			<a href="ViewRegisteredCourse.php">View Registered</a>
   			<a></a>
   			<a></a>
   			<a></a>
