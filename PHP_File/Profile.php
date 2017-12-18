@@ -1,6 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 
+<?php 
+	session_start();
+	$userid = $_SESSION["userid"];
+	$_SESSION["userid"] = $userid;
+	
+	include 'DBConnection.php';
+	$query="SELECT `idStudent`, `FirstName`, `LastName`, `Email`, `Classification`, `Gender`, `Major`, `intake` 
+		 FROM `student` where idStudent=$userid";
+	$student = mysqli_query($conn, $query);
+	$sturow=mysqli_fetch_array($student);
+	
+	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";	
+	$major = mysqli_query($conn, $query);
+
+	$query="SELECT idClassification, ClassificationName FROM classificationtable";	
+	$classification = mysqli_query($conn, $query);
+ ?>
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,29 +26,36 @@
 		<meta name="author" content="Rummy" />
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<script>
+			function submitform() () {
+			 	document.forms["form"].action.value = "submit";
+	   			document.forms["form"].submit();
+			}
+		</script>
 	</head>
 	<body>
 		<?php
-				include 'menuStaff.php';
+				include 'menuStudent.php';
 		?>	
-		<form name="Profile" method="post" action="">
+		<form name="form" method="post" action="ProfileMethod.php">
+			<input type="hidden" name="action" value="1" >
 			<div class="main">
 				<table border="0">
 				<tr>
 					<td>First Name:</td>
-					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["firstname"])){echo (string)$_SESSION["firstname"];}?>">  </td>
+					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["FirstName"])){echo (string)$_SESSION["FirstName"];}else{echo $sturow["FirstName"];}?>">  </td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["lastname"])){echo (string)$_SESSION["lastname"];}?>"> </td>
+					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["LastName"])){echo (string)$_SESSION["LastName"];}else{echo $sturow["LastName"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["email"])){echo (string)$_SESSION["email"];}?>"> </td>
+					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["Email"])){echo (string)$_SESSION["Email"];}else{echo $sturow["Email"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Intake:</td>
-					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}?>"> </td>
+					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}else{echo $sturow["intake"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Classification</td>
@@ -40,6 +65,8 @@
 							<?php  
 								if (isset($_SESSION["classification"])){
                						$class=(string)$_SESSION["classification"];
+            					}else{
+            						$class=$sturow["Classification"];
             					}
 							while ($row=mysqli_fetch_array($classification)){
 								if($class==$row["idClassification"]){?>
@@ -58,6 +85,8 @@
 							<?php  
 								if (isset($_SESSION["gender"])){
                						$gender=(string)$_SESSION["gender"];
+            					}else{
+            						$gender=$sturow["Gender"];
             					}
 								if($gender=="1"){
 							?>
@@ -71,10 +100,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Telephone:</td>
-					<td><input style="width: 200px" type="tel" name="phone" value="<?php if (isset($_SESSION["phone"])){echo (string)$_SESSION["phone"];}?>"> </td>
-				</tr>
-				<tr>
 					<td>Major</td>
 					<td>
 						<select name="major" style="width: 200px">
@@ -82,6 +107,8 @@
 							<?php  
 								if (isset($_SESSION["major"])){
                						$temp=(string)$_SESSION["major"];
+            					}else{
+            						$temp=$sturow["Major"];
             					}
 							while ($row=mysqli_fetch_array($major)){
 								if($temp==$row["idmajor"]){?>
@@ -94,17 +121,6 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Username:</td>
-					<td><input style="width: 200px" type="text" name="username" value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>"> </td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input style="width: 200px" type="password" name="password"></td>
-				</tr>
-				<tr>
-					<td>Comfirm Password:</td>
-					<td><input style="width: 200px" type="password" name="cfpassword"></td>
-				</tr>
 				<?php 
 					
 					$valid="1";
@@ -116,19 +132,14 @@
 				<tr>
 					<td colspan="2" align="center">Please input all information!</td>
 				</tr>
-				<?php  }else if($valid=="2"){?>
-				<tr>
-					<td colspan="2" align="center">Username is used!</td>
-				</tr>	
-				<?php }else if($valid=="3"){ 	?>
-				<tr>
-					<td colspan="2" align="center">Confirm Password is wrong!</td>
-				</tr>	
-				<?php } 
+				<?php }
 					session_destroy();
 				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+				</tr>
+				<tr>
+					<td href="javascript:submitform()" colspan="2" align="center"><img src="../Img/submit.png" alt="Edit" title="Edit" border=0 /></td>
 				</tr>
 			</table>
 			</div>

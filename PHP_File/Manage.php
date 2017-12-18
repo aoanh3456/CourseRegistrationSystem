@@ -26,7 +26,6 @@
 		?>	
 
 		<form name="form" method="post" action="">
-		<input type="hidden" name="idStudent" value="" >
 			<div class="main">
 				<table border="0" style="width:100%">
 					<tr>
@@ -35,9 +34,9 @@
 				</table>
 				<table border="1" style="width:100%">
 					<tr>
-						<th align="center" width="10%">StudentID</th>
-						<th align="center" width="30%">StudentName</th>
-						<th align="center" width="30%">CourseName</th>
+						<th align="center" width="10%">Student ID</th>
+						<th align="center" width="30%">Student Name</th>
+						<th align="center" width="30%">Course Name</th>
 						<th align="center" width="10%">Date</th>
 						<th align="center" width="10%">Status</th>
 						<th align="center" width="10%">Action</th>

@@ -6,12 +6,10 @@
 	
 	session_start();
 	
-	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";
-	
+	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";	
 	$major = mysqli_query($conn, $query);
 
-	$query="SELECT idClassification, ClassificationName FROM classificationtable";
-	
+	$query="SELECT idClassification, ClassificationName FROM classificationtable";	
 	$classification = mysqli_query($conn, $query);
 ?>
 
@@ -84,10 +82,6 @@
 							<?php } ?>
 						</select>
 					</td>
-				</tr>
-				<tr>
-					<td>Telephone:</td>
-					<td><input style="width: 200px" type="tel" name="phone" value="<?php if (isset($_SESSION["phone"])){echo (string)$_SESSION["phone"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Major</td>

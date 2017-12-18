@@ -5,7 +5,6 @@
 	$email=$_POST['email'];
 	$intake=$_POST['intake'];
 	$gender=$_POST['gender'];
-	$phone=$_POST['phone'];
 	$major=$_POST['major'];
 	$username=$_POST['username'];
 	$password=$_POST['password'];
@@ -14,7 +13,7 @@
 
 	session_start();
 	$valid="1";
-	if(empty($firstname) || empty($lastname) || empty($email) || empty($intake) || empty($phone) || empty($major)
+	if(empty($firstname) || empty($lastname) || empty($email) || empty($intake) || empty($major)
 			|| empty($username) || empty($password)){
 		$valid="0";
 	}
@@ -74,7 +73,6 @@
 		$_SESSION["email"] = $email;
 		$_SESSION["intake"] = $intake;
 		$_SESSION["gender"] = $gender;
-		$_SESSION["phone"] = $phone;
 		$_SESSION["major"] = $major;
 		$_SESSION["username"] = $username;
 		$_SESSION["classification"] = $classification;
