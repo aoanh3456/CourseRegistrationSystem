@@ -39,6 +39,10 @@
 					<tr>
 						<td>Cannot delete course. Please try again!</td>
 					</tr>
+					<?php }else if($check=="2"){ ?>
+					<tr>
+						<td>The course is executed!</td>
+					</tr>	
 					<?php } ?>
 				</table>
 				<table border="0" style="width:100%">

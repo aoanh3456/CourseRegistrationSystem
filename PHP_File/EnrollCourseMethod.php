@@ -32,16 +32,27 @@
 	}
 	
 	if($action=="delete"){
-		$query="DELETE FROM registrationrequest where idCourses=$id and idStudent=$userid";
-		if(mysqli_query($conn, $query)){
-			$check="1";
-			$_SESSION["userid"] = $userid;
-			$newURL = "ViewRegisteredCourse.php";
-			header('Location: '.$newURL);
+		$query="Select status from registrationrequest where idCourses=$id and idStudent=$userid";
+		if($status = mysqli_query($conn, $query)){
+			while($row=mysqli_fetch_array($status)){
+				if($rom["status"]!=0){
+					$check="2";
+				}
+			}
+		}
+		
+		if($check!="2"){
+			$query="DELETE FROM registrationrequest where idCourses=$id and idStudent=$userid";
+			if(mysqli_query($conn, $query)){
+				$check="1";
+				$_SESSION["userid"] = $userid;
+				$newURL = "ViewRegisteredCourse.php";
+				header('Location: '.$newURL);
+			}
 		}
 				
 					
-		if($check=="0"){
+		if($check=="0" || $check=="2"){
 			$_SESSION["check"] = $check;
 			$_SESSION["userid"] = $userid;
 			$newURL = "ViewRegisteredCourse.php";

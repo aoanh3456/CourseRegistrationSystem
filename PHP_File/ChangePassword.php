@@ -18,7 +18,7 @@
 	</head>
 	<body>
 		<?php
-				include 'menuStaff.php';
+				include 'menuStudent.php';
 		?>
 		<form name="form" method="post" action="ChangePasswordMethod.php">
 			<div class="main">
