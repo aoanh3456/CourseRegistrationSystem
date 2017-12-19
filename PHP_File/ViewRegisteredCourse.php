@@ -7,11 +7,11 @@
 	$_SESSION["userid"] = $userid;
 	
 	include 'DBConnection.php';
-	$query="selct req.idStudent, req.idCourses, req.RequestDate, req.Status, c.Teacher, c.credit, 
+	$query="select req.idStudent, req.idCourses, req.RequestDate, req.Status, c.Teacher, c.credit, c.CoursesName, c.Prerequisite, 
 		 case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end,
 		 case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end
 		 from registrationrequest req inner join courses c on req.idCourses=c.idCourses
-		 	left join majortable b on c.majorcourse=b.idmajor";
+		 	left join majortable b on c.majorcourse=b.idmajor where req.idStudent=$userid";
 	$courses = mysqli_query($conn, $query);
  ?>
 
@@ -37,7 +37,7 @@
 	            		}
 						if($check=="0"){ ?>
 					<tr>
-						<td>Cannot register course. Please try again!</td>
+						<td>Cannot delete course. Please try again!</td>
 					</tr>
 					<?php } ?>
 				</table>
@@ -51,7 +51,8 @@
 						<th align="center" width="10%">Course Code</th>
 						<th align="center" width="20%">Course Name</th>
 						<th align="center" width="5%">Credit</th>
-						<th align="center" width="20%">Major</th>
+						<th align="center" width="10%">Major</th>
+						<th align="center" width="10%">Teacher</th>
 						<th align="center" width="25%">Prerequisite</th>
 						<th align="center" width="10%">Status</th>
 						<th align="center" width="10%">Action</th>
@@ -64,6 +65,7 @@
 						<td align="center"><?php echo $row["CoursesName"] ?></td>
 						<td align="center"><?php echo $row["credit"] ?></td>
 						<td align="center"><?php echo $row["case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end"] ?></td>
+						<td align="center"><?php echo $row["Teacher"] ?></td>
 						<td align="center">
 							<?php 
 							if($row["Prerequisite"]==1){
@@ -79,19 +81,17 @@
 							 </table>
 							 <?php } ?>
 						</td>
-						<td align="center">
 							<?php if($row["Status"]==0){ ?>
-								<tr align="center"><td>Waiting</td></tr>
+								<td align="center">Waiting</td>
 							<?php }else if($row["Status"]==1){ ?>
-								<tr align="center"><td>Approved</td></tr>
+								<td align="center">Approved</td>
 							<?php }else if($row["Status"]==2){ ?>
-								<tr align="center"><td>Disapproved</td></tr>
+								<td align="center">Disapproved</td>
 							<?php } ?>
-						</td>
 						<td align="center">
-							<?php if($row["Status"]==1){ ?>
-								<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>&action=delete"><img src="../Img/delete.png" alt="Enroll" title="Enroll" border=0 /></a>
-							<?php } ?>
+							<?php if($row["Status"]!="1"){ ?>
+								<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>&action=delete"><img src="../Img/delete.png" alt="Drop" title="Drop" border=0 /></a>
+							<?php }?>
 						</td>
 					</tr>
 					<?php } ?>

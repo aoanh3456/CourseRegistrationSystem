@@ -7,14 +7,14 @@
 	$_SESSION["userid"] = $userid;
 	
 	include 'DBConnection.php';
-	$query="select a.idCourses, case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
+	$query="select a.teacher, a.idCourses, case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
 	 from courses a left join majortable b on a.majorcourse=b.idmajor
 	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
 	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
 	 		and a.idCourses not in (select idCourses from registrationrequest where idStudent=$userid)
 	 		and a.Prerequisite=0
 	union
-	select a.idCourses, case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
+	select a.teacher, a.idCourses, case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
 	 from courses a left join majortable b on a.majorcourse=b.idmajor
 	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
 	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
@@ -61,7 +61,8 @@
 						<th align="center" width="10%">Course Code</th>
 						<th align="center" width="20%">Course Name</th>
 						<th align="center" width="5%">Credit</th>
-						<th align="center" width="20%">Major</th>
+						<th align="center" width="10%">Major</th>
+						<th align="center" width="10%">Teacher</th>
 						<th align="center" width="35%">Prerequisite</th>
 						<th align="center" width="10%">Action</th>
 					</tr>
@@ -73,6 +74,7 @@
 						<td align="center"><?php echo $row["CoursesName"] ?></td>
 						<td align="center"><?php echo $row["credit"] ?></td>
 						<td align="center"><?php echo $row["case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end"] ?></td>
+						<td align="center"><?php echo $row["teacher"] ?></td>
 						<td align="center">
 							<?php 
 							if($row["Prerequisite"]==1){

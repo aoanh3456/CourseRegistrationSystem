@@ -18,7 +18,7 @@
 		if(mysqli_query($conn, $query)){
 			$check="1";
 			$_SESSION["userid"] = $userid;
-			$newURL = "ViewRegisteredCourse.php";
+			$newURL = "EnrollCourse.php";
 			header('Location: '.$newURL);
 		}
 				
