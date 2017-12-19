@@ -89,7 +89,7 @@
 							 <?php } ?>
 						</td>
 						<td align="center">
-							<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/check.png" alt="Enroll" title="Enroll" border=0 /></a>
+							<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>&action=enroll"><img src="../Img/check.png" alt="Enroll" title="Enroll" border=0 /></a>
 						</td>
 					</tr>
 					<?php } ?>

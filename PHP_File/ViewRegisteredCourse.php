@@ -7,7 +7,11 @@
 	$_SESSION["userid"] = $userid;
 	
 	include 'DBConnection.php';
-	$query="";
+	$query="selct req.idStudent, req.idCourses, req.RequestDate, req.Status, c.Teacher, c.credit, 
+		 case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end,
+		 case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end
+		 from registrationrequest req inner join courses c on req.idCourses=c.idCourses
+		 	left join majortable b on c.majorcourse=b.idmajor";
 	$courses = mysqli_query($conn, $query);
  ?>
 
@@ -56,7 +60,7 @@
 						while ($row=mysqli_fetch_array($courses)){
 					?>
 					<tr>
-						<td align="center"><?php echo $row["case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end"] ?></td>
+						<td align="center"><?php echo $row["case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end"] ?></td>
 						<td align="center"><?php echo $row["CoursesName"] ?></td>
 						<td align="center"><?php echo $row["credit"] ?></td>
 						<td align="center"><?php echo $row["case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end"] ?></td>
@@ -76,7 +80,18 @@
 							 <?php } ?>
 						</td>
 						<td align="center">
-							<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/check.png" alt="Enroll" title="Enroll" border=0 /></a>
+							<?php if($row["Status"]==0){ ?>
+								<tr align="center"><td>Waiting</td></tr>
+							<?php }else if($row["Status"]==1){ ?>
+								<tr align="center"><td>Approved</td></tr>
+							<?php }else if($row["Status"]==2){ ?>
+								<tr align="center"><td>Disapproved</td></tr>
+							<?php } ?>
+						</td>
+						<td align="center">
+							<?php if($row["Status"]==1){ ?>
+								<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>&action=delete"><img src="../Img/delete.png" alt="Enroll" title="Enroll" border=0 /></a>
+							<?php } ?>
 						</td>
 					</tr>
 					<?php } ?>
