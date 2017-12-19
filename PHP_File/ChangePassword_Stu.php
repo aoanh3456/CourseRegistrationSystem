@@ -5,6 +5,14 @@
 	session_start();
 	$userid = $_SESSION["userid"];
 	$_SESSION["userid"] = $userid;
+	
+	if(isset($_GET["id"])){
+		$id = $_GET["id"];
+		$_SESSION["id"]=$_GET["id"];
+	}else{
+		$id = $_SESSION["id"];
+		$_SESSION["id"]=$id;
+	}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -18,15 +26,11 @@
 	</head>
 	<body>
 		<?php
-				include 'menuStudent.php';
+				include 'menuStaff.php';
 		?>
-		<form name="form" method="post" action="ChangePasswordMethod.php">
+		<form name="form" method="post" action="ChangePassword_StuMethod.php">
 			<div class="main">
 				<table border="0">
-				<tr>
-					<td>Old password:</td>
-					<td><input style="width: 200px" type="password" name="oldpassword"> </td>
-				</tr>
 				<tr>
 					<td>New password:</td>
 					<td><input style="width: 200px" type="password" name="newpassword"></td>
@@ -50,7 +54,7 @@
 				<tr>
 					<td colspan="2" align="center">Old password is wrong!</td>
 				</tr>	
-				<?php }else if($valid=="3"){ 	?>
+				<?php }else if($valid=="3"){ ?>
 				<tr>
 					<td colspan="2" align="center">Confirm Password is wrong!</td>
 				</tr>	
@@ -58,6 +62,7 @@
 					if (isset($_SESSION["valid"])){
 						unset($_SESSION["valid"]);
 					}
+						
 				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>

@@ -37,7 +37,9 @@ session_start();
 						<td colspan="2" align="center">Invalid account!</td>
 					</tr>
 					<?php  }
-						session_destroy();
+						if (isset($_SESSION["valid"])){
+							unset($_SESSION["valid"]);
+						}
 					?>
 					<tr>
 						<td align="center" colspan="2"><input type="submit" name="signinbotton" value ="Login"></td>

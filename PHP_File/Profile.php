@@ -133,7 +133,9 @@
 					<td colspan="2" align="center">Please input all information!</td>
 				</tr>
 				<?php }
-					
+					if (isset($_SESSION["valid"])){
+						unset($_SESSION["valid"]);
+					}
 				?>
 				<tr>
 					<td colspan="2" align="center">

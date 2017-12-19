@@ -134,7 +134,9 @@
 					<td colspan="2" align="center">Confirm Password is wrong!</td>
 				</tr>	
 				<?php } 
-					
+					if (isset($_SESSION["valid"])){
+						unset($_SESSION["valid"]);
+					}
 				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>

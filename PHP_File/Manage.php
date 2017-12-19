@@ -4,9 +4,10 @@
 <?php 
 	session_start();
 	$userid = $_SESSION["userid"];
+	$_SESSION["userid"] = $userid;
 	
 	include 'DBConnection.php';
-	$query="SELECT a.idStudent, concat(b.FirstName, ' ', b.LastName) as NameStudent, c.CoursesName, a.RequestDate, a.Status 
+	$query="SELECT c.idCourses, case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end, a.idStudent, concat(b.FirstName, ' ', b.LastName) as NameStudent, c.CoursesName, a.RequestDate, a.Status, c.teacher, c.Prerequisite 
 		FROM registrationrequest a inner join student b on a.idStudent=b.idStudent inner join courses c on a.idCourses=c.idCourses";
 	$student = mysqli_query($conn, $query);
  ?>
@@ -28,16 +29,30 @@
 		<form name="form" method="post" action="">
 			<div class="main">
 				<table border="0" style="width:100%">
+					<?php 
+						$check="1";
+						if (isset($_SESSION["check"])){
+	               			$check=(string)$_SESSION["check"];
+	            		}
+						if($check=="0"){ ?>
 					<tr>
-						
+						<td>Cannot rely this request. Please try again!</td>
 					</tr>
+					<?php } 
+						if (isset($_SESSION["check"])){
+							unset($_SESSION["check"]);
+						}
+					?>
 				</table>
 				<table border="1" style="width:100%">
 					<tr>
-						<th align="center" width="10%">Student ID</th>
-						<th align="center" width="30%">Student Name</th>
-						<th align="center" width="30%">Course Name</th>
-						<th align="center" width="10%">Date</th>
+						<th align="center" width="7%">Student ID</th>
+						<th align="center" width="7%">Course ID</th>
+						<th align="center" width="15%">Student Name</th>
+						<th align="center" width="16%">Course Name</th>
+						<th align="center" width="15%">Prerequisite</th>
+						<th align="center" width="10%">Teacher</th>
+						<th align="center" width="10%">Date Request</th>
 						<th align="center" width="10%">Status</th>
 						<th align="center" width="10%">Action</th>
 					</tr>
@@ -46,13 +61,47 @@
 					?>
 					<tr>
 						<td align="center"><?php echo $row["idStudent"] ?></td>
+						<td align="center"><?php echo $row["case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end"] ?></td>
 						<td align="left"><?php echo $row["NameStudent"] ?></td>
 						<td align="left"><?php echo $row["CoursesName"] ?></td>
-						<td align="center"><?php echo $row["RequestDate"] ?></td>
-						<td align="center"><?php echo $row["Status"] ?></td>
 						<td align="center">
-							<a href=""><img src="../Img/check.png" alt="Approve" title="Approve" border=0 /></a>
-							<a href=""><img src="../Img/check.png" alt="Disapprove" title="Disapprove" border=0 /></a>
+							<?php 
+							if($row["Prerequisite"]==1){
+								$temp=$row["idCourses"];
+								$query="select red.CoursesName from prerequisitetable pre inner join courses red on pre.idCoursesPrerequisite=red.idCourses
+											where pre.idCourses=$temp";
+								$pre_courses = mysqli_query($conn, $query);
+							 ?>
+							 <table border="0">
+							 	<?php while ($row=mysqli_fetch_array($pre_courses)){ ?>
+							 		<tr align="center"><td><?php echo $row["CoursesName"] ?></td></tr>
+							 	<?php } ?>
+							 </table>
+							 <?php } ?>
+						</td>
+						<td align="left"><?php echo $row["teacher"] ?></td>
+						<td align="center"><?php echo $row["RequestDate"] ?></td>
+							<?php if($row["Status"]=="0"){ ?>
+								<td align="center">Waiting</td>
+							<?php }else if($row["Status"]=="1"){ ?>
+								<td align="center">Approved</td>
+							<?php }else if($row["Status"]=="2"){ ?>
+								<td align="center">Disapproved</td>
+							<?php }else if($row["Status"]=="3"){ ?>
+								<td align="center">Finish</td>
+							<?php } ?>	
+						<td align="center">
+							<?php if($row["Status"]=="0"){ ?>
+								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=approve"><img src="../Img/check.png" alt="Approve" title="Approve" border=0 /></a>
+								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=disapprove"><img src="../Img/delete.png" alt="Disapprove" title="Disapprove" border=0 /></a>
+							<?php }else if($row["Status"]=="1"){ ?>
+								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=disapprove"><img src="../Img/delete.png" alt="Disapprove" title="Disapprove" border=0 /></a>
+								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=finish"><img src="../Img/update.png" alt="Finish" title="Finish" border=0 /></a>
+							<?php }else if($row["Status"]=="2"){ ?>
+								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=approve"><img src="../Img/check.png" alt="Approve" title="Approve" border=0 /></a>
+							<?php }else if($row["Status"]=="3"){ ?>
+								
+							<?php } ?>
 						</td>
 					</tr>
 					<?php } ?>

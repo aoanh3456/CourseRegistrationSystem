@@ -14,6 +14,15 @@
 	include 'DBConnection.php';
 	
 	if($action=="enroll"){
+		$query="Select isOpening from courses where idCourses=$id";
+		if($status = mysqli_query($conn, $query)){
+			while($row=mysqli_fetch_array($status)){
+				if($rom["isOpening"]!="1"){
+					$check="2";
+				}
+			}
+		}
+		
 		$query="INSERT INTO `registrationrequest`(`idStudent`, `idCourses`, `RequestDate`, `Status`) VALUES ($userid,$id,'$datenow',0)";
 		if(mysqli_query($conn, $query)){
 			$check="1";
@@ -35,7 +44,7 @@
 		$query="Select status from registrationrequest where idCourses=$id and idStudent=$userid";
 		if($status = mysqli_query($conn, $query)){
 			while($row=mysqli_fetch_array($status)){
-				if($rom["status"]!=0){
+				if($row["status"]!="0"){
 					$check="2";
 				}
 			}

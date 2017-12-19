@@ -11,7 +11,7 @@
 		 case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end,
 		 case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end
 		 from registrationrequest req inner join courses c on req.idCourses=c.idCourses
-		 	left join majortable b on c.majorcourse=b.idmajor where req.idStudent=$userid";
+		 	left join majortable b on c.majorcourse=b.idmajor where req.idStudent=$userid and req.status!=3";
 	$courses = mysqli_query($conn, $query);
  ?>
 
@@ -43,7 +43,11 @@
 					<tr>
 						<td>The course is executed!</td>
 					</tr>	
-					<?php } ?>
+					<?php }
+						if (isset($_SESSION["check"])){
+							unset($_SESSION["check"]);
+						}
+					 ?>
 				</table>
 				<table border="0" style="width:100%">
 					<tr>
@@ -72,7 +76,7 @@
 						<td align="center"><?php echo $row["Teacher"] ?></td>
 						<td align="center">
 							<?php 
-							if($row["Prerequisite"]==1){
+							if($row["Prerequisite"]=="1"){
 								$temp=$row["idCourses"];
 								$query="select red.CoursesName from prerequisitetable pre inner join courses red on pre.idCoursesPrerequisite=red.idCourses
 											where pre.idCourses=$temp";
@@ -85,15 +89,17 @@
 							 </table>
 							 <?php } ?>
 						</td>
-							<?php if($row["Status"]==0){ ?>
+							<?php if($row["Status"]=="0"){ ?>
 								<td align="center">Waiting</td>
-							<?php }else if($row["Status"]==1){ ?>
+							<?php }else if($row["Status"]=="1"){ ?>
 								<td align="center">Approved</td>
-							<?php }else if($row["Status"]==2){ ?>
+							<?php }else if($row["Status"]=="2"){ ?>
 								<td align="center">Disapproved</td>
+							<?php }else if($row["Status"]=="3"){ ?>
+								<td align="center">Finish</td>
 							<?php } ?>
 						<td align="center">
-							<?php if($row["Status"]!="1"){ ?>
+							<?php if($row["Status"]=="0"){ ?>
 								<a href="EnrollCourseMethod.php?id=<?php echo $row["idCourses"] ?>&action=delete"><img src="../Img/delete.png" alt="Drop" title="Drop" border=0 /></a>
 							<?php }?>
 						</td>
