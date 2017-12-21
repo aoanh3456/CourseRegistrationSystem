@@ -1,18 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd">
 
-<?php	
+<?php
+    include 'DBConnection.php';
+	
 	session_start();
 	$userid = $_SESSION["userid"];
 	$_SESSION["userid"] = $userid;
 	
-	if(isset($_GET["id"])){
-		$id = $_GET["id"];
-		$_SESSION["id"]=$_GET["id"];
-	}else{
-		$id = $_SESSION["id"];
-		$_SESSION["id"]=$id;
+	if(isset($_SESSION["id"])){
+		$id = $_SESSION['id'];
+		$_SESSION['id']=$id;
 	}
+	
+	if(isset($_GET["id"])){
+		$id=$_GET["id"];
+		$_SESSION['id']=$id;
+		$query="SELECT FirstName, LastName, Email, Classification, Gender, Major, Username, Password, intake 
+			 FROM student where idStudent=$id";
+		$studentt = mysqli_query($conn, $query);
+		while ($rowstu=mysqli_fetch_array($studentt)){
+			$_SESSION['firstname']=$rowstu['FirstName'];
+			$_SESSION['lastname']=$rowstu['LastName'];
+			$_SESSION['email']=$rowstu['Email'];
+			$_SESSION['intake']=$rowstu['intake'];
+			$_SESSION['gender']=$rowstu['Gender'];
+			$_SESSION['major']=$rowstu['Major'];
+			$_SESSION['username']=$rowstu['Username'];
+			$_SESSION['classification']=$rowstu['Classification'];
+		}	
+	}
+	
+	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";	
+	$major = mysqli_query($conn, $query);
+
+	$query="SELECT idClassification, ClassificationName FROM classificationtable";	
+	$classification = mysqli_query($conn, $query);
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -32,12 +55,89 @@
 			<div class="main">
 				<table border="0">
 				<tr>
-					<td>New password:</td>
-					<td><input style="width: 200px" type="password" name="newpassword"></td>
+					<td>First Name:</td>
+					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["firstname"])){echo (string)$_SESSION["firstname"];}?>">  </td>
 				</tr>
 				<tr>
-					<td>Comfirm new password:</td>
-					<td><input style="width: 200px" type="password" name="cfnewpassword"></td>
+					<td>Last Name:</td>
+					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["lastname"])){echo (string)$_SESSION["lastname"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["email"])){echo (string)$_SESSION["email"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Intake:</td>
+					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Classification</td>
+					<td>
+						<select name="classification" style="width: 200px">
+							<option value=""></option>
+							<?php  
+								if (isset($_SESSION["classification"])){
+               						$class=(string)$_SESSION["classification"];
+            					}
+							while ($row=mysqli_fetch_array($classification)){
+								if($class==$row["idClassification"]){?>
+									<option value="<?php echo $row["idClassification"] ?>" selected="selected"><?php echo $row["ClassificationName"] ?></option>
+								<?php }else{  ?>
+									<option value="<?php echo $row["idClassification"] ?>"><?php echo $row["ClassificationName"] ?></option>
+								<?php }  ?>
+							<?php }  ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td>
+						<select name="gender" style="width: 200px">
+							<?php  
+								if (isset($_SESSION["gender"])){
+               						$gender=(string)$_SESSION["gender"];
+            					}
+								if($gender=="1"){
+							?>
+								<option value="1" selected="selected"> Male</option>
+								<option value="0"> Female</option>
+							<?php }else{ ?>
+								<option value="1"> Male</option>
+								<option value="0" selected="selected"> Female</option>
+							<?php } ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Major</td>
+					<td>
+						<select name="major" style="width: 200px">
+							<option value=""></option>
+							<?php  
+								if (isset($_SESSION["major"])){
+               						$temp=(string)$_SESSION["major"];
+            					}
+							while ($row=mysqli_fetch_array($major)){
+								if($temp==$row["idmajor"]){?>
+									<option value="<?php echo $row["idmajor"] ?>" selected="selected"><?php echo $row["majorname"] ?></option>
+								<?php }else{  ?>
+									<option value="<?php echo $row["idmajor"] ?>"><?php echo $row["majorname"] ?></option>
+								<?php }  ?>
+							<?php }  ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Username:</td>
+					<td><input style="width: 200px" type="text" name="username" value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>"> </td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input style="width: 200px" type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>Comfirm Password:</td>
+					<td><input style="width: 200px" type="password" name="cfpassword"></td>
 				</tr>
 				<?php 
 					
@@ -52,9 +152,9 @@
 				</tr>
 				<?php  }else if($valid=="2"){?>
 				<tr>
-					<td colspan="2" align="center">Old password is wrong!</td>
+					<td colspan="2" align="center">Username is used!</td>
 				</tr>	
-				<?php }else if($valid=="3"){ ?>
+				<?php }else if($valid=="3"){ 	?>
 				<tr>
 					<td colspan="2" align="center">Confirm Password is wrong!</td>
 				</tr>	
@@ -62,7 +162,6 @@
 					if (isset($_SESSION["valid"])){
 						unset($_SESSION["valid"]);
 					}
-						
 				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>

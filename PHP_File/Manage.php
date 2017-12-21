@@ -73,8 +73,8 @@
 								$pre_courses = mysqli_query($conn, $query);
 							 ?>
 							 <table border="0">
-							 	<?php while ($row=mysqli_fetch_array($pre_courses)){ ?>
-							 		<tr align="center"><td><?php echo $row["CoursesName"] ?></td></tr>
+							 	<?php while ($row_pre=mysqli_fetch_array($pre_courses)){ ?>
+							 		<tr align="center"><td><?php echo $row_pre["CoursesName"] ?></td></tr>
 							 	<?php } ?>
 							 </table>
 							 <?php } ?>
@@ -89,6 +89,8 @@
 								<td align="center">Disapproved</td>
 							<?php }else if($row["Status"]=="3"){ ?>
 								<td align="center">Finish</td>
+							<?php }else{ ?>
+								<td align="center"></td>
 							<?php } ?>	
 						<td align="center">
 							<?php if($row["Status"]=="0"){ ?>
@@ -99,7 +101,7 @@
 								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=finish"><img src="../Img/update.png" alt="Finish" title="Finish" border=0 /></a>
 							<?php }else if($row["Status"]=="2"){ ?>
 								<a href="ManageMethod.php?cid=<?php echo $row["idCourses"] ?>&sid=<?php echo $row["idStudent"] ?>&status=<?php echo $row["Status"] ?>&action=approve"><img src="../Img/check.png" alt="Approve" title="Approve" border=0 /></a>
-							<?php }else if($row["Status"]=="3"){ ?>
+							<?php }else{ ?>
 								
 							<?php } ?>
 						</td>

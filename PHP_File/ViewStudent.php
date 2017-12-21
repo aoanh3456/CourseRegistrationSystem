@@ -60,7 +60,7 @@
 						<th align="center" width="10%">Gender</th>
 						<th align="center" width="15%">Username</th>
 						<th align="center" width="10%">Intake</th>
-						<th align="center" width="10%">Change password</th>
+						<th align="center" width="10%">Change information</th>
 					</tr>
 					<?php
 						while ($row=mysqli_fetch_array($courses)){
