@@ -32,12 +32,17 @@
 			$_SESSION['CourseCode2']=$row['CourseCode2'];
 			$_SESSION['MajorCourse']=$row['MajorCourse'];
 			$_SESSION['isOpening']=$row['isOpening'];
-		}	
+		}
+		
+		$query="SELECT idCourses, idCoursesPrerequisite FROM prerequisitetable where idCourses=$id limit 1";
+		$pre = mysqli_query($conn, $query);
 	}
 	
 	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";	
 	$major = mysqli_query($conn, $query);
-
+	
+	$query="SELECT idCourses, concat(case when CourseCode1='' then CourseCode2 else CourseCode1 end,' - ',CoursesName) as CoursesName FROM Courses";	
+	$coursess = mysqli_query($conn, $query);
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -53,7 +58,7 @@
 		<?php
 				include 'menuStaff.php';
 		?>
-		<form name="form" method="post" action="ChangePassword_StuMethod.php">
+		<form name="form" method="post" action="CourseEditMethod.php">
 			<div class="main">
 				<table border="0">
 				<tr>
@@ -83,28 +88,28 @@
 				<tr>
 					<td>Prerequisite:</td>
 					<td align="center">
-							<?php 
-							if(isset($_SESSION["Prerequisite"]) && $row["Prerequisite"]=="1"){
-								if(isset($_SESSION['idCourses'])){
-									$temp=$_SESSION["idCourses"];
-								}
-								$query="select red.CoursesName from prerequisitetable pre inner join courses red on pre.idCoursesPrerequisite=red.idCourses
-											where pre.idCourses=$temp";
-								$pre_courses = mysqli_query($conn, $query);
-							 ?>
-							 <table border="0">
-							 	<?php while ($row_pre=mysqli_fetch_array($pre_courses)){ ?>
-							 		<tr align="center"><td><?php echo $row_pre["CoursesName"] ?></td></tr>
-							 	<?php } ?>
-							 </table>
-							 <?php } ?>
+						<select name="Prerequisite" style="width: 200px">
+							<option value=""></option>
+							<?php  
+								if (isset($_SESSION["Prerequisite"]) && $_SESSION["Prerequisite"]=="1"){
+									$rowpre=mysqli_fetch_array($pre);
+               						$temp=$rowpre["idCoursesPrerequisite"];
+            					}
+							while ($rowma=mysqli_fetch_array($coursess)){
+								if($temp==$rowma["idCourses"]){?>
+									<option value="<?php echo $rowma["idCourses"] ?>" selected="selected"><?php echo $rowma["CoursesName"] ?></option>
+								<?php }else{  ?>
+									<option value="<?php echo $rowma["idCourses"] ?>"><?php echo $rowma["CoursesName"] ?></option>
+								<?php }  ?>
+							<?php }  ?>
+						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>Major Course:</td>
 					<td>
 						<select name="MajorCourse" style="width: 200px">
-							<option value="">General</option>
+							<option value="0">General</option>
 							<?php  
 								if (isset($_SESSION["MajorCourse"])){
                						$temp=(string)$_SESSION["MajorCourse"];
@@ -138,6 +143,22 @@
 						</select>
 					</td>
 				</tr>
+				<?php 
+					
+					$valid="1";
+					if (isset($_SESSION["valid"])){
+               			$valid=(string)$_SESSION["valid"];
+            		}
+					if($valid=="0"){
+				?>
+				<tr>
+					<td colspan="2" align="center">Please input all information!</td>
+				</tr>
+				<?php  }
+					if (isset($_SESSION["valid"])){
+						unset($_SESSION["valid"]);
+					}
+				?>
 				<tr>
 					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
 				</tr>
