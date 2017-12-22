@@ -67,6 +67,11 @@
 				</table>
 				<table id="tablecss" border="1" style="width:100%">
 					<tr>
+						<td align="center" colspan="10">
+							Courses Manage
+						</td>
+					</tr>
+					<tr>
 						<th align="center" width="5%">Course Code1</th>
 						<th align="center" width="5%">Course Code2</th>
 						<th align="center" width="20%">Course Name</th>

@@ -46,6 +46,11 @@
 				</table>
 				<table id="tablecss" border="1" style="width:100%">
 					<tr>
+						<td align="center" colspan="10">
+							Manage Request
+						</td>
+					</tr>
+					<tr>
 						<th align="center" width="7%">Student ID</th>
 						<th align="center" width="7%">Course ID</th>
 						<th align="center" width="15%">Student Name</th>

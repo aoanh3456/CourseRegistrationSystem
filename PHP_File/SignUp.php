@@ -20,7 +20,7 @@
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
-
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
 	</head>
 	<body>
 		<?php
@@ -28,27 +28,32 @@
 		?>
 		<form name="form" method="post" action="SignUpMethod.php">
 			<div class="main">
-				<table border="0">
+				<table id="tablecssv1" border="0">
+				<tr>
+					<td align="center" colspan="2">
+						Student Creation
+					</td>
+				</tr>	
 				<tr>
 					<td>First Name:</td>
-					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["firstname"])){echo (string)$_SESSION["firstname"];}?>">  </td>
+					<td><input style="width: 400px" type="text" name="firstname" value="<?php if (isset($_SESSION["firstname"])){echo (string)$_SESSION["firstname"];}?>">  </td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["lastname"])){echo (string)$_SESSION["lastname"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="lastname" value="<?php if (isset($_SESSION["lastname"])){echo (string)$_SESSION["lastname"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["email"])){echo (string)$_SESSION["email"];}?>"> </td>
+					<td><input style="width: 400px" type="email" name="email" value="<?php if (isset($_SESSION["email"])){echo (string)$_SESSION["email"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Intake:</td>
-					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Classification</td>
 					<td>
-						<select name="classification" style="width: 200px">
+						<select name="classification" style="width: 400px">
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["classification"])){
@@ -67,7 +72,7 @@
 				<tr>
 					<td>Gender:</td>
 					<td>
-						<select name="gender" style="width: 200px">
+						<select name="gender" style="width: 400px">
 							<?php  
 								if (isset($_SESSION["gender"])){
                						$gender=(string)$_SESSION["gender"];
@@ -86,7 +91,7 @@
 				<tr>
 					<td>Major</td>
 					<td>
-						<select name="major" style="width: 200px">
+						<select name="major" style="width: 400px">
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["major"])){
@@ -104,15 +109,15 @@
 				</tr>
 				<tr>
 					<td>Username:</td>
-					<td><input style="width: 200px" type="text" name="username" value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="username" value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input style="width: 200px" type="password" name="password"></td>
+					<td><input style="width: 400px" type="password" name="password"></td>
 				</tr>
 				<tr>
 					<td>Comfirm Password:</td>
-					<td><input style="width: 200px" type="password" name="cfpassword"></td>
+					<td><input style="width: 400px" type="password" name="cfpassword"></td>
 				</tr>
 				<?php 
 					
@@ -123,15 +128,15 @@
 					if($valid=="0"){
 				?>
 				<tr>
-					<td colspan="2" align="center">Please input all information!</td>
+					<td colspan="2" style="color: red;" align="center">Please input all information!</td>
 				</tr>
 				<?php  }else if($valid=="2"){?>
 				<tr>
-					<td colspan="2" align="center">Username is used!</td>
+					<td colspan="2" style="color: red;" align="center">Username is used!</td>
 				</tr>	
 				<?php }else if($valid=="3"){ 	?>
 				<tr>
-					<td colspan="2" align="center">Confirm Password is wrong!</td>
+					<td colspan="2" style="color: red;" align="center">Confirm Password is wrong!</td>
 				</tr>	
 				<?php } 
 					if (isset($_SESSION["valid"])){

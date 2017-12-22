@@ -67,6 +67,11 @@
 				</table>
 				<table id="tablecss" border="1" style="width:100%">
 					<tr>
+						<td align="center" colspan="10">
+							Eroll Course
+						</td>
+					</tr
+					<tr>
 						<th align="center" width="10%">Course Code</th>
 						<th align="center" width="20%">Course Name</th>
 						<th align="center" width="5%">Credit</th>

@@ -26,6 +26,7 @@
 		<meta name="author" content="Rummy" />
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
 		<script>
 			function submitform() {
 			 	document.forms["form"].action.value = "submit";
@@ -40,27 +41,32 @@
 		<form name="form" method="post" action="ProfileMethod.php">
 			<input type="hidden" name="action" value="1" >
 			<div class="main">
-				<table border="0">
+				<table id="tablecssv1" border="0">
+				<tr>
+					<td align="center" colspan="2">
+						Change student's information
+					</td>
+				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input style="width: 200px" type="text" name="firstname" value="<?php if (isset($_SESSION["FirstName"])){echo (string)$_SESSION["FirstName"];}else{echo $sturow["FirstName"];}?>">  </td>
+					<td><input style="width: 400px" type="text" name="firstname" value="<?php if (isset($_SESSION["FirstName"])){echo (string)$_SESSION["FirstName"];}else{echo $sturow["FirstName"];}?>">  </td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input style="width: 200px" type="text" name="lastname" value="<?php if (isset($_SESSION["LastName"])){echo (string)$_SESSION["LastName"];}else{echo $sturow["LastName"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="lastname" value="<?php if (isset($_SESSION["LastName"])){echo (string)$_SESSION["LastName"];}else{echo $sturow["LastName"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><input style="width: 200px" type="email" name="email" value="<?php if (isset($_SESSION["Email"])){echo (string)$_SESSION["Email"];}else{echo $sturow["Email"];}?>"> </td>
+					<td><input style="width: 400px" type="email" name="email" value="<?php if (isset($_SESSION["Email"])){echo (string)$_SESSION["Email"];}else{echo $sturow["Email"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Intake:</td>
-					<td><input style="width: 200px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}else{echo $sturow["intake"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="intake" value="<?php if (isset($_SESSION["intake"])){echo (string)$_SESSION["intake"];}else{echo $sturow["intake"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Classification</td>
 					<td>
-						<select name="classification" style="width: 200px">
+						<select name="classification" style="width: 400px">
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["classification"])){
@@ -81,7 +87,7 @@
 				<tr>
 					<td>Gender:</td>
 					<td>
-						<select name="gender" style="width: 200px">
+						<select name="gender" style="width: 400px">
 							<?php  
 								if (isset($_SESSION["gender"])){
                						$gender=(string)$_SESSION["gender"];
@@ -102,7 +108,7 @@
 				<tr>
 					<td>Major</td>
 					<td>
-						<select name="major" style="width: 200px">
+						<select name="major" style="width: 400px" disabled>
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["major"])){
@@ -130,7 +136,7 @@
 					if($valid=="0"){
 				?>
 				<tr>
-					<td colspan="2" align="center">Please input all information!</td>
+					<td colspan="2" style="color: red;" align="center">Please input all information!</td>
 				</tr>
 				<?php }
 					if (isset($_SESSION["valid"])){

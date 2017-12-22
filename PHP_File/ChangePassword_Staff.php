@@ -14,7 +14,7 @@
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
-
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
 	</head>
 	<body>
 		<?php
@@ -22,18 +22,23 @@
 		?>
 		<form name="form" method="post" action="ChangePasswordMethod_Staff.php">
 			<div class="main">
-				<table border="0">
+				<table id="tablecssv1" border="0">
+				<tr>
+					<td align="center" colspan="2">
+						Change staff's password
+					</td>
+				</tr>
 				<tr>
 					<td>Old password:</td>
-					<td><input style="width: 200px" type="password" name="oldpassword"> </td>
+					<td><input style="width: 400px" type="password" name="oldpassword"> </td>
 				</tr>
 				<tr>
 					<td>New password:</td>
-					<td><input style="width: 200px" type="password" name="newpassword"></td>
+					<td><input style="width: 400px" type="password" name="newpassword"></td>
 				</tr>
 				<tr>
 					<td>Comfirm new password:</td>
-					<td><input style="width: 200px" type="password" name="cfnewpassword"></td>
+					<td><input style="width: 400px" type="password" name="cfnewpassword"></td>
 				</tr>
 				<?php 
 					
@@ -44,15 +49,15 @@
 					if($valid=="0"){
 				?>
 				<tr>
-					<td colspan="2" align="center">Please input all information!</td>
+					<td colspan="2" style="color: red;" align="center">Please input all information!</td>
 				</tr>
 				<?php  }else if($valid=="2"){?>
 				<tr>
-					<td colspan="2" align="center">Old password is wrong!</td>
+					<td colspan="2" style="color: red;" align="center">Old password is wrong!</td>
 				</tr>	
 				<?php }else if($valid=="3"){ 	?>
 				<tr>
-					<td colspan="2" align="center">Confirm Password is wrong!</td>
+					<td colspan="2" style="color: red;" align="center">Confirm Password is wrong!</td>
 				</tr>	
 				<?php } 
 					if (isset($_SESSION["valid"])){

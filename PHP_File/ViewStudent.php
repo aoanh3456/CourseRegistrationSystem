@@ -54,6 +54,11 @@
 				</table>
 				<table id="tablecss" border="1" style="width:100%">
 					<tr>
+						<td align="center" colspan="10">
+							Student Information
+						</td>
+					</tr>
+					<tr>
 						<th align="center" width="10%">Student ID</th>
 						<th align="center" width="15%">Student Name</th>
 						<th align="center" width="15%">Email</th>

@@ -52,6 +52,9 @@
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<link href="../CSS_File/select2.min.css" rel="stylesheet" />
+		<script src="../JS/select2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
 	</head>
 	<body>
 		<?php
@@ -59,35 +62,40 @@
 		?>
 		<form name="form" method="post" action="CourseEditMethod.php">
 			<div class="main">
-				<table border="0">
+				<table id="tablecssv1" border="0">
+				<tr>
+					<td align="center" colspan="2">
+						Course Edit
+					</td>
+				</tr>
 				<tr>
 					<td>Course Code 1:</td>
-					<td><input style="width: 200px" type="text" name="CourseCode1" value="<?php if (isset($_SESSION["CourseCode1"])){echo (string)$_SESSION["CourseCode1"];}?>">  </td>
+					<td><input style="width: 400px" type="text" name="CourseCode1" value="<?php if (isset($_SESSION["CourseCode1"])){echo (string)$_SESSION["CourseCode1"];}?>">  </td>
 				</tr>
 				<tr>
 					<td>Course Code 2:</td>
-					<td><input style="width: 200px" type="text" name="CourseCode2" value="<?php if (isset($_SESSION["CourseCode2"])){echo (string)$_SESSION["CourseCode2"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="CourseCode2" value="<?php if (isset($_SESSION["CourseCode2"])){echo (string)$_SESSION["CourseCode2"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Course Name:</td>
-					<td><input style="width: 200px" type="text" name="CoursesName" value="<?php if (isset($_SESSION["CoursesName"])){echo (string)$_SESSION["CoursesName"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="CoursesName" value="<?php if (isset($_SESSION["CoursesName"])){echo (string)$_SESSION["CoursesName"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Credit:</td>
-					<td><input style="width: 200px" type="text" name="Credit" value="<?php if (isset($_SESSION["Credit"])){echo (string)$_SESSION["Credit"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="Credit" value="<?php if (isset($_SESSION["Credit"])){echo (string)$_SESSION["Credit"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Teacher:</td>
-					<td><input style="width: 200px" type="text" name="Teacher" value="<?php if (isset($_SESSION["Teacher"])){echo (string)$_SESSION["Teacher"];}?>"> </td>
+					<td><input style="width: 400px" type="text" name="Teacher" value="<?php if (isset($_SESSION["Teacher"])){echo (string)$_SESSION["Teacher"];}?>"> </td>
 				</tr>
 				<tr>
 					<td>Enroll Number:</td>
-					<td><input style="width: 200px" type="text" name="EnrolledNumber" value="<?php if (isset($_SESSION["EnrolledNumber"])){echo (string)$_SESSION["EnrolledNumber"];}?>" readonly> </td>
+					<td><input style="width: 400px" type="text" name="EnrolledNumber" value="<?php if (isset($_SESSION["EnrolledNumber"])){echo (string)$_SESSION["EnrolledNumber"];}?>" readonly> </td>
 				</tr>
 				<tr>
 					<td>Prerequisite:</td>
-					<td align="center">
-						<select name="Prerequisite" style="width: 200px">
+					<td align="left">
+						<select name="Prerequisite" style="width: 400px">
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["Prerequisite"]) && $_SESSION["Prerequisite"]=="1"){
@@ -107,7 +115,7 @@
 				<tr>
 					<td>Major Course:</td>
 					<td>
-						<select name="MajorCourse" style="width: 200px">
+						<select name="MajorCourse" style="width: 400px">
 							<option value="0">General</option>
 							<?php  
 								if (isset($_SESSION["MajorCourse"])){
@@ -126,7 +134,7 @@
 				<tr>
 					<td>isOpening:</td>
 					<td>
-						<select name="isOpening" style="width: 200px">
+						<select name="isOpening" style="width: 400px">
 							<?php  
 								if (isset($_SESSION["isOpening"])){
                						$isopening=(string)$_SESSION["isOpening"];
@@ -151,7 +159,7 @@
 					if($valid=="0"){
 				?>
 				<tr>
-					<td colspan="2" align="center">Please input all information!</td>
+					<td colspan="2" style="color: red;" align="center">Please input all information!</td>
 				</tr>
 				<?php  }
 					if (isset($_SESSION["valid"])){

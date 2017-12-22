@@ -1,0 +1,25 @@
+body {
+	margin:0;}
+		#tablecssv1 {
+	    	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	    	border-collapse: collapse;
+	    	width: 100%;
+		}
+	
+		#tablecssv1 td, #tablecssv1 th {
+	    	border: 1px solid #ddd;
+	    	padding: 8px;
+		}
+	
+		#tablecssv1 tr:nth-child(even){background-color: #f2f2f2;}
+	
+		#tablecssv1 tr:hover {background-color: #ddd;}
+	
+		#tablecssv1 th {
+	    	padding-top: 12px;
+	    	padding-bottom: 12px;
+	    	text-align: center;
+	    	background-color: #4CAF50;
+	    	color: white;
+		}
+}
