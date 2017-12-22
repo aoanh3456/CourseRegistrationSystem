@@ -8,7 +8,7 @@
 	
 	include 'DBConnection.php';
 	$query="SELECT c.idCourses, case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end, a.idStudent, concat(b.FirstName, ' ', b.LastName) as NameStudent, c.CoursesName, a.RequestDate, a.Status, c.teacher, c.Prerequisite 
-		FROM registrationrequest a inner join student b on a.idStudent=b.idStudent inner join courses c on a.idCourses=c.idCourses";
+		FROM registrationrequest a inner join student b on a.idStudent=b.idStudent inner join courses c on a.idCourses=c.idCourses order by a.Status";
 	$student = mysqli_query($conn, $query);
  ?>
 

@@ -23,7 +23,7 @@
 	$query="SELECT c.idCourses, c.CoursesName, c.Credit, c.Teacher, c.Availability, 
 		 c.EnrolledNumber, 
 		 c.Prerequisite, c.CourseCode1, c.CourseCode2, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, c.isOpening 
-		 FROM courses c left join majortable b on c.majorcourse=b.idmajor";
+		 FROM courses c left join majortable b on c.majorcourse=b.idmajor order by c.isOpening desc";
 	$courses = mysqli_query($conn, $query);
  ?>
 
@@ -35,7 +35,6 @@
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSS.css">
-		<link rel="stylesheet" type="text/css" href="../CSS_File/button.css">
 		
 		<style>
 			.button {

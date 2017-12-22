@@ -12,7 +12,7 @@
 	$Teacher=$_POST['Teacher'];
 	$EnrolledNumber=$_POST['EnrolledNumber'];
 	$Prerequisite=$_POST['Prerequisite'];
-	$Prerequisite=$_POST['PrerequisiteName'];
+	$PrerequisiteName=$_POST['PrerequisiteName'];
 	$CourseCode1=$_POST['CourseCode1'];
 	$CourseCode2=$_POST['CourseCode2'];
 	$MajorCourse=$_POST['MajorCourse'];
@@ -123,7 +123,7 @@
 		$_SESSION['Teacher']=$Teacher;
 		$_SESSION['EnrolledNumber']=$EnrolledNumber;
 		$_SESSION['Prerequisite']=$Prerequisite;
-		$_SESSION['PrerequisiteName']=$Prerequisite;
+		$_SESSION['PrerequisiteName']=$PrerequisiteName;
 		$_SESSION['CourseCode1']=$CourseCode1;
 		$_SESSION['CourseCode2']=$CourseCode2;
 		$_SESSION['MajorCourse']=$MajorCourse;

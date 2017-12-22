@@ -11,7 +11,7 @@
 		 case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end,
 		 case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end
 		 from registrationrequest req inner join courses c on req.idCourses=c.idCourses
-		 	left join majortable b on c.majorcourse=b.idmajor where req.idStudent=$userid and req.status!=3";
+		 	left join majortable b on c.majorcourse=b.idmajor where req.idStudent=$userid and req.status!=3 order by req.Status";
 	$courses = mysqli_query($conn, $query);
  ?>
 

@@ -12,16 +12,9 @@
 	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
 	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
 	 		and a.idCourses not in (select idCourses from registrationrequest where idStudent=$userid)
-	 		and a.Prerequisite=0
-	union
-	select a.teacher, a.idCourses, case when a.CourseCode1='' then a.CourseCode2 else a.CourseCode1 end, a.CoursesName, a.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, a.Prerequisite
-	 from courses a left join majortable b on a.majorcourse=b.idmajor
-	 where a.isOpening=1 and (a.majorcourse in (select major from student where idStudent=$userid) or a.majorcourse=0) 
-	 		and a.idCourses not in (select idCourses from registeredcoures where idStudent=$userid)
-			and a.idCourses not in (select idCourses from registrationrequest where idStudent=$userid)
-	 		and a.Prerequisite=1 and a.idCourses in (select pre.idCourses from prerequisitetable pre left join registeredcoures red on pre.idCoursesPrerequisite=red.idCourses where red.idStudent=$userid
-												group by pre.idCourses having count(pre.idCoursesPrerequisite)=count(red.idCourses))												
-											";
+	 		and (a.Prerequisite=0 or (a.Prerequisite=1 and a.idCourses in (select pre.idCourses from prerequisitetable pre left join registeredcoures red on pre.idCoursesPrerequisite=red.idCourses where red.idStudent=$userid
+												group by pre.idCourses having count(pre.idCoursesPrerequisite)=count(red.idCourses)))) order by a.majorcourse desc												
+								";
 	$courses = mysqli_query($conn, $query);
  ?>
 

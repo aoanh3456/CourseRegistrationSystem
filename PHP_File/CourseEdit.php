@@ -34,8 +34,14 @@
 			$_SESSION['isOpening']=$row['isOpening'];
 		}
 		
-		$query="SELECT idCourses, idCoursesPrerequisite FROM prerequisitetable where idCourses=$id limit 1";
+		$query="SELECT pre.idCourses, pre.idCoursesPrerequisite, 
+			concat(case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end, ' - ', c.CoursesName) as PrerequisiteName
+			FROM prerequisitetable pre inner join courses c on pre.idCoursesPrerequisite=c.idCourses where pre.idCourses=$id";
 		$pre = mysqli_query($conn, $query);
+		while ($rowprep=mysqli_fetch_array($pre)){
+			$_SESSION['PrerequisiteName']=$rowprep['PrerequisiteName'];
+			$_SESSION['Prerequisite']=$rowprep['idCoursesPrerequisite'];
+		}
 	}
 	
 	$query="SELECT idmajor, concat(majorcode,' - ',majorname) as majorname FROM majortable";	
@@ -58,6 +64,7 @@
 		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
 		<script type="text/javascript" src="../JS/dropdowncontent.js"></script>
 		<script type="text/javascript" src="../JS/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="../JS/ajax-dynamic-list.js"></script>
 		<script type="text/javascript" src="../scripts/ajax.js"></script>
 		<script>
 			function showHint(str) {
@@ -106,7 +113,7 @@
 				include 'menuStaff.php';
 		?>
 		<form name="form" method="post" action="CourseEditMethod.php">
-			<input type="hidden" name="Prerequisite" id="Prerequisite" value="" >
+			<input type="hidden" name="Prerequisite" id="Prerequisite" value="<?php if (isset($_SESSION["Prerequisite"])){echo (string)$_SESSION["Prerequisite"];}?>">
 			<div class="main">
 				<table id="tablecssv1" border="0">
 				<tr>

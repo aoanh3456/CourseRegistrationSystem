@@ -10,7 +10,7 @@
 	$query="SELECT reg.idStudent, c.idCourses, c.CoursesName, case when c.CourseCode1='' then c.CourseCode2 else c.CourseCode1 end, 
 		 c.credit, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, c.teacher, c.Prerequisite 
 		 FROM registeredcoures reg inner join courses c on reg.idCourses=c.idCourses left join majortable b on c.majorcourse=b.idmajor
-		 where reg.idStudent=$userid";
+		 where reg.idStudent=$userid order by c.credit desc";
 	$courses = mysqli_query($conn, $query);
  ?>
 
