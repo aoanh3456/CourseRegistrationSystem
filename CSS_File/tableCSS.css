@@ -6,7 +6,7 @@ body {
 	    	width: 100%;
 		}
 	
-		#tablecss td, #customers th {
+		#tablecss td, #tablecss th {
 	    	border: 1px solid #ddd;
 	    	padding: 8px;
 		}

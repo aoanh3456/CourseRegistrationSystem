@@ -33,6 +33,21 @@
 		<meta name="author" content="Rummy" />
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSS.css">
+		
+		<style>
+			.button {
+    			background-color: #4CAF50; /* Green */
+    			border: none;
+    			color: white;
+    			padding: 15px 32px;
+    			text-align: center;
+    			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    			text-decoration: none;
+   				display: inline-block;
+    			font-size: 16px;
+			}
+		</style>
 	</head>
 	<body>
 		<?php
@@ -46,11 +61,11 @@
 				<table border="0" style="width:100%">
 					<tr>
 						<td>
-							<a href="CourseEdit.php?"><img src="../Img/submit.png" alt="Create" title="Create" border=0 /></a>
+							<a class="button" href="CourseEdit.php?">Create new course</a>
 						</td>
 					</tr>
 				</table>
-				<table border="1" style="width:100%">
+				<table id="tablecss" border="1" style="width:100%">
 					<tr>
 						<th align="center" width="5%">Course Code1</th>
 						<th align="center" width="5%">Course Code2</th>

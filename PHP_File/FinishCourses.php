@@ -21,6 +21,7 @@
 		<meta name="author" content="Rummy" />
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSS.css">
 	</head>
 	<body>
 		<?php
@@ -48,12 +49,7 @@
 						}
 					?>
 				</table>
-				<table border="0" style="width:100%">
-					<tr>
-						
-					</tr>
-				</table>
-				<table border="1" style="width:100%">
+				<table id="tablecss" border="1" style="width:100%">
 					<tr>
 						<th align="center" width="10%">Course Code</th>
 						<th align="center" width="25%">Course Name</th>
