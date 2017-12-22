@@ -9,6 +9,9 @@ body {
 		#tablecssv1 td, #tablecssv1 th {
 	    	border: 1px solid #ddd;
 	    	padding: 8px;
+	
+	    
+			
 		}
 	
 		#tablecssv1 tr:nth-child(even){background-color: #f2f2f2;}
@@ -21,5 +24,29 @@ body {
 	    	text-align: center;
 	    	background-color: #4CAF50;
 	    	color: white;
+	    	
 		}
+input[type=text] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
+}
+input[type=email] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
+}
+input[type=password]{
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
 }

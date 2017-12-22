@@ -21,6 +21,7 @@
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/button.css">
 		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
 		<link href="../CSS_File/select2.css" rel="stylesheet"/>
    		<script src="../JS/select2.js"></script>
@@ -150,7 +151,7 @@
 					}
 				?>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+					<td colspan="2" align="center"><input type="submit" value ="Submit" class="button"></td>
 				</tr>
 			</table>
 		</div>
