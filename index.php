@@ -11,6 +11,7 @@ session_start();
 		<title>SignIn</title>
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-14 -->
+
 		<style>
 			table{
     			width: 100%;
@@ -62,7 +63,7 @@ session_start();
                     	</tr>         
                    		<tr>           
                       		<td height="100" colspan="2" width="70%" valign="top" align="center">
-                    			<input type="password" style="width:300px;height: 40px;" name="password" placeholder="Password" >
+                    			<input type="password" style="width:300px;height: 40px;" name="password" placeholder="Password"  >
                 			</td>
             			</tr>
           				<?php 
@@ -82,7 +83,7 @@ session_start();
                			?>
                 		<tr>         	
                				<td align="center" valign="top" colspan="2" >
-                         		<input type="submit" name="signinbotton" value ="Login" style="background-color: #FFFFF; 
+                         		<input type="submit" name="signinbotton" value ="Login"  style="background-color: #FFFFF; 
     									border: 1 solid px;
     									color: black;
    										padding: 10px;
