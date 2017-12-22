@@ -12,6 +12,7 @@
 	unset($_SESSION['Teacher']);
 	unset($_SESSION['EnrolledNumber']);
 	unset($_SESSION['Prerequisite']);
+	unset($_SESSION['PrerequisiteName']);
 	unset($_SESSION['CourseCode1']);
 	unset($_SESSION['CourseCode2']);
 	unset($_SESSION['MajorCourse']);
