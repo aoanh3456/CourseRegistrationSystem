@@ -33,11 +33,12 @@ session_start();
 			}
 
 			.left {
-  				width: 60%;
+  				width: 65%;
+  				border: 0px solid black;
 			}
 
 			.right {
-  				width:40%;
+  				width:35%;
   				background-color: #1E90FF;
   				border: 0px solid black;
   			}
