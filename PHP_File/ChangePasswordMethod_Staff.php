@@ -49,7 +49,7 @@
 		
 		$_SESSION["valid"] = $valid;
 		$_SESSION["userid"] = $userid;
-		$newURL = "ChangePassword.php";
+		$newURL = "ChangePassword_Staff.php";
 		header('Location: '.$newURL);
 	}
 ?>

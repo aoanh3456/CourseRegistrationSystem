@@ -6,6 +6,18 @@
 	$userid = $_SESSION["userid"];
 	$_SESSION["userid"] = $userid;
 	
+	unset($_SESSION['idCourses']);
+	unset($_SESSION['CoursesName']);
+	unset($_SESSION['Credit']);
+	unset($_SESSION['Teacher']);
+	unset($_SESSION['EnrolledNumber']);
+	unset($_SESSION['Prerequisite']);
+	unset($_SESSION['CourseCode1']);
+	unset($_SESSION['CourseCode2']);
+	unset($_SESSION['MajorCourse']);
+	unset($_SESSION['isOpening']);
+	unset($_SESSION["id"]);
+	
 	include 'DBConnection.php';
 	$query="SELECT c.idCourses, c.CoursesName, c.Credit, c.Teacher, c.Availability, 
 		 c.EnrolledNumber, 
@@ -33,7 +45,9 @@
 				</table>
 				<table border="0" style="width:100%">
 					<tr>
-						
+						<td>
+							<a href="CourseEdit.php?"><img src="../Img/submit.png" alt="Create" title="Create" border=0 /></a>
+						</td>
 					</tr>
 				</table>
 				<table border="1" style="width:100%">
@@ -83,7 +97,7 @@
 								<td align="center"></td>
 							<?php } ?>
 						<td align="center">
-							<a href="CourseEdit.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/update.png" alt="Enroll" title="Enroll" border=0 /></a>
+							<a href="CourseEdit.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/update.png" alt="Edit" title="Edit" border=0 /></a>
 						</td>
 					</tr>
 					<?php } ?>
