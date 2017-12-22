@@ -83,7 +83,7 @@
 				</tr>
 				<tr>
 					<td>Enroll Number:</td>
-					<td><input style="width: 200px" type="text" name="EnrolledNumber" value="<?php if (isset($_SESSION["EnrolledNumber"])){echo (string)$_SESSION["EnrolledNumber"];}?>"> </td>
+					<td><input style="width: 200px" type="text" name="EnrolledNumber" value="<?php if (isset($_SESSION["EnrolledNumber"])){echo (string)$_SESSION["EnrolledNumber"];}?>" readonly> </td>
 				</tr>
 				<tr>
 					<td>Prerequisite:</td>

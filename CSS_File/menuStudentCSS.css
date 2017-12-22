@@ -3,7 +3,7 @@ body {
 			
 			.menuStudent {
 			  overflow: hidden;
-			  background-color: #000;
+			  background-color: #1E90FF;
 			  position: fixed;
 			  top: 0;
 			  width: 100%;
@@ -23,4 +23,5 @@ body {
 			  padding: 16px;
 			  margin-top: 30px;
 			  height: 1500px;
+			}
 }

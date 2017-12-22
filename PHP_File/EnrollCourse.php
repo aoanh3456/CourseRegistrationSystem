@@ -32,6 +32,7 @@
 		<meta name="author" content="Rummy" />
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSS.css">
 	</head>
 	<body>
 		<?php
@@ -64,7 +65,7 @@
 						
 					</tr>
 				</table>
-				<table border="1" style="width:100%">
+				<table id="tablecss" border="1" style="width:100%">
 					<tr>
 						<th align="center" width="10%">Course Code</th>
 						<th align="center" width="20%">Course Name</th>
@@ -72,7 +73,7 @@
 						<th align="center" width="10%">Major</th>
 						<th align="center" width="10%">Teacher</th>
 						<th align="center" width="35%">Prerequisite</th>
-						<th align="center" width="10%">Action</th>
+						<th align="center" width="10%">Enroll</th>
 					</tr>
 					<?php
 						while ($row=mysqli_fetch_array($courses)){

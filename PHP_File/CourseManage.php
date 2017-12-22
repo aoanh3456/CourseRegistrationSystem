@@ -61,7 +61,7 @@
 						<th align="center" width="20%">Prerequisite</th>
 						<th align="center" width="5%">EnrollNumber</th>
 						<th align="center" width="5%">isOpening</th>
-						<th align="center" width="10%">Action</th>
+						<th align="center" width="10%">Edit</th>
 					</tr>
 					<?php
 						while ($row=mysqli_fetch_array($courses)){

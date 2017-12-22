@@ -12,113 +12,91 @@ session_start();
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-14 -->
 		<style>
-		table{
-  
-    width: 100%;
-	border: 0px solid;
-}
+			table{
+    			width: 100%;
+				border: 0px solid;
+			}
 
-* {
-    box-sizing: border-box;
-}
+			* {
+    			box-sizing: border-box;
+			}
 
-body {
-    margin: 0;
-}
+			body {
+    			margin: 0;
+			}
 
+			.column {
+    			float: left;
+    			padding: 0px;
+    			height: 638px;
+			}
 
-.column {
-    float: left;
-    padding: 0px;
-    height: 638px;
-}
+			.left {
+  				width: 60%;
+			}
 
-.left {
-  width: 60%;
-   
-}
-
-.right {
-  width:40%;
- 
-  background-color: #1E90FF;
-  border: 0px solid black;
-  }
-
-}
-
-
-</style>
-	</head>	
-
-	<body >
-			
-		<form name="form" method="post" action="PHP_File/SignInMethod.php">
-			<div class="row">
-  <div class="column left"  >
-  
-    	<img src="Img/Courses2.png" style="width:877px;height:637px;">
-  
-  </div>
- 
-  <div class="column right" align="center">
-         <td>
-             <img src="Img/Courses5.png" style="width:300px;height:300px;">	
-         </td>
-         <div >
-                                 <table border="1"   >	
-                                 <tr>
-                                    <td height="50">
-                                     <input type="text" name="username" placeholder="Username" style="width:300px"  value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>">
-                                     </td>
-                                 </tr>
-                                 
-                                 <tr>
-                                    
-                                     <td height="10
-                                     
-                                     
-                                     0" width="50">
-                                     	<input type="password" name="password" placeholder="Password" >
-                                     	</td>
-                                 </tr>
-                                 <?php 
-                                                                                  $valid="1";
-                                     if (isset($_SESSION["valid"])){
-                                            $valid=(string)$_SESSION["valid"];
-                                     }
-                                     if($valid=="0"){
-                                 ?>
-                                 <tr>
-                                     <td colspan="2" align="left">Invalid account!</td>
-                                 </tr>
-                                 <?php  }
-                                     if (isset($_SESSION["valid"])){
-                                         unset($_SESSION["valid"]);
-                                     }
-                                 ?>
-                                 <tr>
-                                 	
-                                     <td align="left"  >
-                                     	<input type="submit" name="signinbotton" value ="Login" style="background-color: #FFFFF; 
+			.right {
+  				width:40%;
+  				background-color: #1E90FF;
+  				border: 0px solid black;
+  			}
+		}
+	</style>
+</head>	
+<body>	
+	<form name="form" method="post" action="PHP_File/SignInMethod.php">
+		<div class="row">
+  			<div class="column left">
+    			<img src="Img/Courses2.png" style="width:877px;height:637px;">
+  			</div>
+  			<div class="column right" align="center">
+         		<td>
+             		<img src="Img/Courses5.png" style="width:300px;height:300px;">	
+         		</td>
+         		<div>
+					<table border="0">
+						<tr>
+ 								<td width="70%" colspan="2" valign="bottom" align="center">
+                                     <input type="text" name="username" placeholder="Username" style="width:300px;height: 40px;"  value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>">
+                                </td>
+                    	</tr>         
+                   		<tr>           
+                      		<td height="100" colspan="2" width="70%" valign="top" align="center">
+                    			<input type="password" style="width:300px;height: 40px;" name="password" placeholder="Password" >
+                			</td>
+            			</tr>
+          				<?php 
+                			$valid="1";
+                      		if (isset($_SESSION["valid"])){
+                   				$valid=(string)$_SESSION["valid"];
+                    		}
+                     		if($valid=="0"){
+               			?>
+                		<tr>
+                  			<td colspan="2" align="center" style="color: red;">Invalid account!</td>
+                 		</tr>
+                  		<?php  }
+            				if (isset($_SESSION["valid"])){
+                   				unset($_SESSION["valid"]);
+                			}
+               			?>
+                		<tr>         	
+               				<td align="center" valign="top" colspan="2" >
+                         		<input type="submit" name="signinbotton" value ="Login" style="background-color: #FFFFF; 
     									border: 1 solid px;
     									color: black;
    										padding: 10px;
-    									width: 20%;
+    									height: 40px;
+    									width: 150px;
     									text-align: center;
     									text-decoration: none;
     									font-size: 16px;"  >
-                                     	</td>
-                                     
-                                 </tr>
-                                 <h2></h2>
-                                 <tr>
-                                 </tr>
-                                 </table>
-                                 </div>
-                                 </div>
- 
+                                     	</td> 
+                     	</tr>
+                   	</table>
+         		</div>
+			</div>
 		</div>
-		</form>
-	</body>
+	</form>
+</body>
 </html>
