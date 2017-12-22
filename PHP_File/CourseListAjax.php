@@ -9,8 +9,12 @@
 	
 	$ajax="";
 	while ($row=mysqli_fetch_array($courses)){
-		$ajax = $row["CourseName"];
+		if($ajax==""){
+			$ajax = $row["CourseName"];
+		}else{
+			$ajax .= $row["CourseName"]."\n";
+		}
 	}
-	
-	echo $ajax == "" ? "no suggestion" : $ajax;
+
+	echo $ajax;
 ?>

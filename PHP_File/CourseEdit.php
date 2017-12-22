@@ -53,6 +53,8 @@
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/autocomplete.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/jqueryautocomplete.css">
 		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
 		<script type="text/javascript" src="../JS/dropdowncontent.js"></script>
 		<script type="text/javascript" src="../JS/jquery.autocomplete.js"></script>
@@ -69,8 +71,8 @@
                 		document.getElementById("txtHint").innerHTML = this.responseText;
            			}
         		};
-        	xmlhttp.open("GET", "CourseListAjax.php?q=" + str, true);
-        	xmlhttp.send();
+        		xmlhttp.open("GET", "CourseListAjax.php?q=" + str, true);
+        		xmlhttp.send();
     			}
 			}
 		</script>
@@ -118,32 +120,9 @@
 				</tr>
 				<tr>
 					<td>Prerequisite</td>
-					<td><input type="text" name="Prerequisite4" id="Prerequisite4" onkeyup="ajax_showOptions(this,'abc',event)/>
-					<div id="suggesstion-box"></div></td>
-				</tr>
-				<tr>
-					<td>Prerequisite</td>
-					<td><input name="Prerequisite2" type="search" onkeyup="showHint(this.value)"></td>
-					<td><span id="txtHint"></span></td>
-				</tr>
-				<tr>
-					<td>Prerequisite:</td>
-					<td align="left">
-						<select name="Prerequisite" style="width: 400px">
-							<option value=""></option>
-							<?php  
-								if (isset($_SESSION["Prerequisite"]) && $_SESSION["Prerequisite"]=="1"){
-									$rowpre=mysqli_fetch_array($pre);
-               						$temp=$rowpre["idCoursesPrerequisite"];
-            					}
-							while ($rowma=mysqli_fetch_array($coursess)){
-								if($temp==$rowma["idCourses"]){?>
-									<option value="<?php echo $rowma["idCourses"] ?>" selected="selected"><?php echo $rowma["CoursesName"] ?></option>
-								<?php }else{  ?>
-									<option value="<?php echo $rowma["idCourses"] ?>"><?php echo $rowma["CoursesName"] ?></option>
-								<?php }  ?>
-							<?php }  ?>
-						</select>
+					<td>
+						<input type="text" style="width: 400px" name="PrerequisiteName" id="PrerequisiteName" onkeyup="ajax_showOptions(this,'abc',event)"/>
+						<input type="hidden" name="Prerequisite" value="" >
 					</td>
 				</tr>
 				<tr>
