@@ -16,6 +16,7 @@ session_start();
 			table{
     			width: 100%;
 				border: 0px solid;
+				
 			}
 
 			* {
@@ -59,12 +60,14 @@ session_start();
 					<table border="0">
 						<tr>
  								<td width="70%" colspan="2" valign="bottom" align="center">
-                                     <input type="text" name="username" placeholder="Username" style="width:300px;height: 40px;"  value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>">
+                                     <input type="text" name="username" placeholder="Username" style="width:300px;height: 40px; border: 2px solid purple;
+    border-radius: 4px;"  value="<?php if (isset($_SESSION["username"])){echo (string)$_SESSION["username"];}?>">
                                 </td>
                     	</tr>         
                    		<tr>           
                       		<td height="100" colspan="2" width="70%" valign="top" align="center">
-                    			<input type="password" style="width:300px;height: 40px;" name="password" placeholder="Password"  >
+                    			<input type="password" style="width:300px;height: 40px; border: 2px solid purple;
+    border-radius: 4px;" name="password" placeholder="Password"  >
                 			</td>
             			</tr>
           				<?php 
@@ -84,15 +87,17 @@ session_start();
                			?>
                 		<tr>         	
                				<td align="center" valign="top" colspan="2" >
-                         		<input type="submit" name="signinbotton" value ="Login"  style="background-color: #FFFFF; 
-    									border: 1 solid px;
-    									color: black;
-   										padding: 10px;
-    									height: 40px;
-    									width: 150px;
-    									text-align: center;
-    									text-decoration: none;
-    									font-size: 16px;"  >
+                         		<input type="submit" ttname="signinbotton" value ="Login"  style=" background-color: #6959CD;
+    								border: none;
+    								color: white;
+    								padding: 15px 32px;
+    								text-align: center;
+    								text-decoration: none;
+    								display: inline-block;
+    								font-size: 16px;
+    								-moz-border-radius: 10px;
+									-webkit-border-radius: 10px;
+									box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);">
                                      	</td> 
                      	</tr>
                    	</table>
