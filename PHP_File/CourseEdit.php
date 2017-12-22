@@ -52,9 +52,33 @@
 		<meta name="author" content="NhienTran" />
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
-		<link href="../CSS_File/select2.min.css" rel="stylesheet" />
-		<script src="../JS/select2.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
+		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
+		<script type="text/javascript" src="../JS/dropdowncontent.js"></script>
+		<script type="text/javascript" src="../JS/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="../scripts/ajax.js"></script>
+		<script>
+			function showHint(str) {
+   				if (str.length == 0) { 
+        			document.getElementById("txtHint").innerHTML = "";
+        			return;
+    			} else {
+       				var xmlhttp = new XMLHttpRequest();
+        			xmlhttp.onreadystatechange = function() {
+            		if (this.readyState == 4 && this.status == 200) {
+                		document.getElementById("txtHint").innerHTML = this.responseText;
+           			}
+        		};
+        	xmlhttp.open("GET", "CourseListAjax.php?q=" + str, true);
+        	xmlhttp.send();
+    			}
+			}
+		</script>
+		<link href="../CSS_File/select2.css" rel="stylesheet"/>
+   		<script src="../JS/select2.js"></script>
+    	<script>
+        	$(document).ready(function() { $("select").select2(); });
+    	</script>
 	</head>
 	<body>
 		<?php
@@ -91,6 +115,16 @@
 				<tr>
 					<td>Enroll Number:</td>
 					<td><input style="width: 400px" type="text" name="EnrolledNumber" value="<?php if (isset($_SESSION["EnrolledNumber"])){echo (string)$_SESSION["EnrolledNumber"];}?>" readonly> </td>
+				</tr>
+				<tr>
+					<td>Prerequisite</td>
+					<td><input type="text" name="Prerequisite4" id="Prerequisite4" onkeyup="ajax_showOptions(this,'abc',event)/>
+					<div id="suggesstion-box"></div></td>
+				</tr>
+				<tr>
+					<td>Prerequisite</td>
+					<td><input name="Prerequisite2" type="search" onkeyup="showHint(this.value)"></td>
+					<td><span id="txtHint"></span></td>
 				</tr>
 				<tr>
 					<td>Prerequisite:</td>
@@ -172,4 +206,9 @@
 			</table>
 		</div>
 	</body>
+	<script type="text/javascript">
+		jQuery(function() {
+			$("#Prerequisite4").autocomplete("CourseListAjax.php");
+		});
+	</script>
 </html>
