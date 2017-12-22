@@ -12,6 +12,7 @@
 	$Teacher=$_POST['Teacher'];
 	$EnrolledNumber=$_POST['EnrolledNumber'];
 	$Prerequisite=$_POST['Prerequisite'];
+	$Prerequisite=$_POST['PrerequisiteName'];
 	$CourseCode1=$_POST['CourseCode1'];
 	$CourseCode2=$_POST['CourseCode2'];
 	$MajorCourse=$_POST['MajorCourse'];
@@ -38,6 +39,21 @@
 	
 	if(empty($Teacher)){
 		$Teacher="";
+	}
+	
+	if($valid!="2"){
+		$query="SELECT COUNT(*) FROM `courses` WHERE (CourseCode1 like '$CourseCode1' or CourseCode2 like '$CourseCode2')";
+		if(isset($_SESSION["id"])){
+			$query .= " and idCourses!=$id";	
+		}
+		if($student = mysqli_query($conn, $query)){
+			while ($row=mysqli_fetch_array($student)){
+				$index = $row["COUNT(*)"];
+				if($index>0){
+					$valid="2";
+				}	
+			}
+		}
 	}
 	
 	if($check=="0" && $valid=="1"){
@@ -107,6 +123,7 @@
 		$_SESSION['Teacher']=$Teacher;
 		$_SESSION['EnrolledNumber']=$EnrolledNumber;
 		$_SESSION['Prerequisite']=$Prerequisite;
+		$_SESSION['PrerequisiteName']=$Prerequisite;
 		$_SESSION['CourseCode1']=$CourseCode1;
 		$_SESSION['CourseCode2']=$CourseCode2;
 		$_SESSION['MajorCourse']=$MajorCourse;

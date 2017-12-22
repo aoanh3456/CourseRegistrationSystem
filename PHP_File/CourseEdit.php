@@ -75,6 +75,25 @@
         		xmlhttp.send();
     			}
 			}
+			
+			function cut() {
+				var PrerequisiteName = document.getElementsByName("PrerequisiteName");
+				
+				if(PrerequisiteName.item(0).value != ""){
+					var str = PrerequisiteName.item(0).value;
+					var pos = parseInt(str.indexOf("+"));
+					if(pos > 0){
+						document.getElementById("Prerequisite").value = str.substring(0, pos);
+						str =  str.substr(parseInt(str.indexOf("+")) + 1);
+						document.getElementById("PrerequisiteName").value = str;
+					}
+				}else{
+					document.getElementById("Prerequisite").value = "";
+					document.getElementById("PrerequisiteName").value = "";
+				}
+				
+				setTimeout(cut, 500);
+			}
 		</script>
 		<link href="../CSS_File/select2.css" rel="stylesheet"/>
    		<script src="../JS/select2.js"></script>
@@ -87,6 +106,7 @@
 				include 'menuStaff.php';
 		?>
 		<form name="form" method="post" action="CourseEditMethod.php">
+			<input type="hidden" name="Prerequisite" id="Prerequisite" value="" >
 			<div class="main">
 				<table id="tablecssv1" border="0">
 				<tr>
@@ -121,8 +141,8 @@
 				<tr>
 					<td>Prerequisite</td>
 					<td>
-						<input type="text" style="width: 400px" name="PrerequisiteName" id="PrerequisiteName" onkeyup="ajax_showOptions(this,'abc',event)"/>
-						<input type="hidden" name="Prerequisite" value="" >
+						<input type="text" style="width: 400px" name="PrerequisiteName" id="PrerequisiteName" onkeyup="ajax_showOptions(this,'abc',event)" 
+								value="<?php if (isset($_SESSION["PrerequisiteName"])){echo (string)$_SESSION["PrerequisiteName"];}?>"/>
 					</td>
 				</tr>
 				<tr>
@@ -174,7 +194,11 @@
 				<tr>
 					<td colspan="2" style="color: red;" align="center">Please input all information!</td>
 				</tr>
-				<?php  }
+				<?php  }else if($valid=="2"){ ?>
+				<tr>
+					<td colspan="2" style="color: red;" align="center">CourseCode is used!</td>
+				</tr>	
+				<?php	}
 					if (isset($_SESSION["valid"])){
 						unset($_SESSION["valid"]);
 					}
@@ -186,8 +210,9 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		cut();
 		jQuery(function() {
-			$("#Prerequisite4").autocomplete("CourseListAjax.php");
+			$("#PrerequisiteName").autocomplete("CourseListAjax.php");
 		});
 	</script>
 </html>
