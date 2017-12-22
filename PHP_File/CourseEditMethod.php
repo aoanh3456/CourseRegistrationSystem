@@ -43,6 +43,13 @@
 	if($check=="0" && $valid=="1"){
 		$query="";
 		if(isset($_SESSION["id"])){
+			$query="select COUNT(*) from registrationrequest where idCourses=$id and status=1";
+			if($enroll = mysqli_query($conn, $query)){
+				while ($row=mysqli_fetch_array($enroll)){
+					$EnrolledNumber = $row["COUNT(*)"];
+				}
+			}
+			
 			$query="UPDATE `courses` SET `CoursesName`='$CoursesName',`Credit`=$Credit,`Teacher`='$Teacher',`Availability`=0,`EnrolledNumber`=$EnrolledNumber,
 				`Prerequisite`=$pre,`CourseCode1`='$CourseCode1',`CourseCode2`='$CourseCode2',`MajorCourse`=$MajorCourse,`isOpening`=$isOpening
 				 where idCourses=$id;";
