@@ -61,6 +61,7 @@
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/autocomplete.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/jqueryautocomplete.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/button.css">
 		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
 		<script type="text/javascript" src="../JS/dropdowncontent.js"></script>
 		<script type="text/javascript" src="../JS/jquery.autocomplete.js"></script>
@@ -211,7 +212,7 @@
 					}
 				?>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+					<td colspan="2" align="center"><input type="submit" class="button" value ="Submit"></td>
 				</tr>
 			</table>
 		</div>

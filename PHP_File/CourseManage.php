@@ -23,7 +23,7 @@
 	$query="SELECT c.idCourses, c.CoursesName, c.Credit, c.Teacher, c.Availability, 
 		 c.EnrolledNumber, 
 		 c.Prerequisite, c.CourseCode1, c.CourseCode2, case when isnull(b.idMajor)=1 then 'General' ELSE b.MajorName end, c.isOpening 
-		 FROM courses c left join majortable b on c.majorcourse=b.idmajor order by c.isOpening desc";
+		 FROM courses c left join majortable b on c.majorcourse=b.idmajor order by c.isOpening, c.EnrolledNumber  desc";
 	$courses = mysqli_query($conn, $query);
  ?>
 
@@ -119,6 +119,7 @@
 							<?php } ?>
 						<td align="center">
 							<a href="CourseEdit.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/update.png" alt="Edit" title="Edit" border=0 /></a>
+							<a href="CourseNumber.php?id=<?php echo $row["idCourses"] ?>"><img src="../Img/upload.png" alt="Number" title="Number" border=0 /></a>
 						</td>
 					</tr>
 					<?php } ?>

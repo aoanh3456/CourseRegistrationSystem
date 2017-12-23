@@ -46,6 +46,7 @@
 		<!-- Date: 2017-12-13 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
+		<link rel="stylesheet" type="text/css" href="../CSS_File/button.css">
 	</head>
 	<body>
 		<?php
@@ -169,7 +170,7 @@
 					}
 				?>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value ="Submit"></td>
+					<td colspan="2" align="center"><input type="submit" class="button" value ="Submit"></td>
 				</tr>
 			</table>
 		</div>

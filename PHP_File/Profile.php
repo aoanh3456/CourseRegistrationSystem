@@ -27,12 +27,18 @@
 		<!-- Date: 2017-12-14 -->
 		<link rel="stylesheet" type="text/css" href="../CSS_File/menuStudentCSS.css">
 		<link rel="stylesheet" type="text/css" href="../CSS_File/tableCSSv1.css">
+		<script type="text/javascript" src="../JS/jquery.min.1.7.js"></script>
 		<script>
 			function submitform() {
 			 	document.forms["form"].action.value = "submit";
 	   			document.forms["form"].submit();
 			}
 		</script>
+		<link href="../CSS_File/select2.css" rel="stylesheet"/>
+   		<script src="../JS/select2.js"></script>
+    	<script>
+        	$(document).ready(function() { $("select").select2(); });
+    	</script>
 	</head>
 	<body>
 		<?php
@@ -108,7 +114,7 @@
 				<tr>
 					<td>Major</td>
 					<td>
-						<select name="major" style="width: 400px" disabled>
+						<select name="major" style="width: 400px">
 							<option value=""></option>
 							<?php  
 								if (isset($_SESSION["major"])){

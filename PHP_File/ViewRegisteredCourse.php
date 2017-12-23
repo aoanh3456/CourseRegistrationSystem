@@ -89,8 +89,8 @@
 								$pre_courses = mysqli_query($conn, $query);
 							 ?>
 							 <table border="0">
-							 	<?php while ($row=mysqli_fetch_array($pre_courses)){ ?>
-							 		<tr align="center"><td><?php echo $row["CoursesName"] ?></td></tr>
+							 	<?php while ($rowe=mysqli_fetch_array($pre_courses)){ ?>
+							 		<tr align="center"><td><?php echo $rowe["CoursesName"] ?></td></tr>
 							 	<?php } ?>
 							 </table>
 							 <?php } ?>

@@ -95,6 +95,7 @@
 				$last_id = mysqli_insert_id($conn);
 				if($pre=="1"){
 					$query=" INSERT INTO `prerequisitetable`(`idCourses`, `idCoursesPrerequisite`) VALUES ($last_id,$Prerequisite)";
+					$query1=$query;
 					if(mysqli_query($conn, $query)){
 						$check="1";
 						$_SESSION["userid"] = $userid;
@@ -116,7 +117,6 @@
 			$valid="0";
 		}
 		
-		$_SESSION["query"] = $query;
 		$_SESSION["valid"] = $valid;
 		$_SESSION['CoursesName']=$CoursesName;
 		$_SESSION['Credit']=$Credit;

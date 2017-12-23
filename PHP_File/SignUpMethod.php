@@ -57,7 +57,7 @@
 					VALUES ('$firstname','$lastname','$email',$classification,$gender,$major,'$username','$password',$intake);";
 		if(mysqli_query($conn, $query)){
 			$check="1";
-			$newURL = "SignIn.php";
+			$newURL = "../Index.php";
 			header('Location: '.$newURL);
 		}
 	}
